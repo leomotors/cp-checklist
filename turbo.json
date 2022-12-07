@@ -10,12 +10,8 @@
         ".next/**"
       ]
     },
-    "lint": {
-      "outputs": []
-    },
-    "format": {
-      "cache": false
-    },
+    "lint": {},
+    "format": {},
     "dev": {
       "cache": false
     }

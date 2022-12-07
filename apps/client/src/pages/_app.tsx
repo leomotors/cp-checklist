@@ -2,7 +2,10 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import { ApolloProvider } from "@apollo/client";
+
 import { createApolloClient } from "@cp-checklist/codegen";
+
+import { AuthProvider, Renderer } from "$modules/authentication";
 
 import "$styles/global.scss";
 
@@ -22,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ApolloProvider client={client}>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Renderer page={Component} props={pageProps} />
+        </AuthProvider>
       </ApolloProvider>
     </>
   );

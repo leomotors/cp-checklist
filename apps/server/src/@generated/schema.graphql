@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthorizationToken {
+  token: String!
+}
+
 type Course {
   courseNo: String!
   academicYear: String!
@@ -270,4 +274,9 @@ enum CourseScalarFieldEnum {
   department
   faculty
   genEdType
+}
+
+type Mutation {
+  login(username: String!, password: String!): AuthorizationToken!
+  register(username: String!, password: String!): AuthorizationToken!
 }

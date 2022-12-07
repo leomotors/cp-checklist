@@ -5,9 +5,9 @@ const config = {
   ...require("@cp-checklist/config/prettier-app"),
   importOrder: [
     "^@nestjs",
-    "^@",
+    "<THIRD_PARTY_MODULES>",
+    "^@cp-checklist",
     "^src/",
-    "^[a-zA-Z]",
     "^./prisma",
     "^./app",
     "^[.][.]",
