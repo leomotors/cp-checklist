@@ -18,6 +18,6 @@ const IndexPage: MyPage = () => {
   );
 };
 
-IndexPage.authStatus = "redirect";
+IndexPage.authStatus = "public";
 
 export default IndexPage;

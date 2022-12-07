@@ -14,6 +14,11 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type AuthorizationToken = {
+  __typename?: 'AuthorizationToken';
+  token: Scalars['String'];
+};
+
 export type Course = {
   __typename?: 'Course';
   abbrName: Scalars['String'];
@@ -137,6 +142,24 @@ export enum GenEdType {
   Sc = 'SC',
   So = 'SO'
 }
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  login: AuthorizationToken;
+  register: AuthorizationToken;
+};
+
+
+export type MutationLoginArgs = {
+  password: Scalars['String'];
+  username: Scalars['String'];
+};
+
+
+export type MutationRegisterArgs = {
+  password: Scalars['String'];
+  username: Scalars['String'];
+};
 
 export type NestedDateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']>;

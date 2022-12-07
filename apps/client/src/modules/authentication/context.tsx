@@ -11,11 +11,13 @@ import {
 export interface IAuthContext {
   id?: string;
   username?: string;
+  loading: boolean;
   setToken: (token: string) => void;
   resetToken: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
+  loading: true,
   setToken: () => null,
   resetToken: () => null,
 });
@@ -35,6 +37,7 @@ function safeJwtDecode(token: string | null): Partial<IAuthJwt> {
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [id, setId] = useState("");
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const readAndSetToken = useCallback(() => {
     const token = localStorage.getItem(authorizationLocalStorageKey);
@@ -47,6 +50,8 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       setId("");
       setUsername("");
     }
+
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -67,7 +72,9 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [readAndSetToken]);
 
   return (
-    <AuthContext.Provider value={{ id, username, setToken, resetToken }}>
+    <AuthContext.Provider
+      value={{ id, username, loading, setToken, resetToken }}
+    >
       {children}
     </AuthContext.Provider>
   );

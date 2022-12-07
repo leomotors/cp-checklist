@@ -13,30 +13,27 @@ interface RendererProps {
 
 export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
   const router = useRouter();
-  const { id, username } = useUser();
+  const { id, loading, username } = useUser();
 
   const isAuth = !!(id && username);
 
   useEffect(() => {
-    if (Page.authStatus === "redirect" && isAuth) {
+    if (Page.authStatus === "redirect" && isAuth && !loading) {
       router.replace("/home");
-    } else if (Page.authStatus !== "public" && !isAuth) {
+    } else if (Page.authStatus !== "public" && !isAuth && !loading) {
       router.replace("/");
     }
-  }, [isAuth, Page.authStatus, router]);
+  }, [isAuth, Page.authStatus, router, loading]);
 
   const Layout = useMemo(() => Page.Layout || Fragment, [Page.Layout]);
 
   switch (Page.authStatus) {
-    case "private": {
-      if (isAuth)
-        return (
-          <Layout>
-            <Page props={props} />
-          </Layout>
-        );
-
-      return null;
+    case "public": {
+      return (
+        <Layout>
+          <Page props={props} />
+        </Layout>
+      );
     }
 
     case "redirect": {
@@ -50,11 +47,15 @@ export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
       return null;
     }
 
-    default:
-      return (
-        <Layout>
-          <Page props={props} />
-        </Layout>
-      );
+    default: {
+      if (isAuth)
+        return (
+          <Layout>
+            <Page props={props} />
+          </Layout>
+        );
+
+      return null;
+    }
   }
 };
