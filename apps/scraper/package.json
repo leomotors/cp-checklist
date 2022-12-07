@@ -1,0 +1,14 @@
+{
+  "name": "@cp-checklist/scraper",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "run": "tsx src/index.ts",
+    "format": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@cp-checklist/config": "workspace:0.0.0",
+    "tsx": "^3.12.1"
+  }
+}

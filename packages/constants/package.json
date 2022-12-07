@@ -1,0 +1,13 @@
+{
+  "name": "@cp-checklist/constants",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint src --max-warnings=0",
+    "format": "eslint src --fix"
+  },
+  "devDependencies": {
+    "@cp-checklist/config": "workspace:0.0.0"
+  }
+}

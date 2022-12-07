@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator nestgraphql {
+  provider = "prisma-nestjs-graphql"
+  output   = "../apps/server/src/@generated"
+}
+
+model User {
+  id       String @id @unique @default(cuid())
+  username String @unique
+  password String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user")
+}
+
+enum GenEdType {
+  SO
+  HU
+  SC
+  IN
+  NO
+}
+
+model Course {
+  courseNo     String @map("course_no")
+  academicYear String @map("academic_year")
+  semester     String
+  studyProgram String @map("study_program")
+
+  abbrName     String  @map("abbr_name")
+  courseNameEn String  @map("course_name_en")
+  courseNameTh String  @map("course_name_th")
+  courseDescEn String? @map("course_desc_en")
+  courseDescTh String? @map("course_desc_th")
+
+  courseCondition String    @map("course_condition")
+  credit          Float
+  creditHours     String    @map("credit_hours")
+  department      String
+  faculty         String
+  genEdType       GenEdType @map("gen_ed_type")
+
+  @@unique([courseNo, academicYear, semester, studyProgram])
+  @@map("course")
+}
