@@ -20,4 +20,13 @@ export class CourseService {
       .findUniqueOrThrow({ where: { courseNo: course.courseNo } })
       .semesters();
   }
+
+  async _count(course: Course) {
+    return (
+      await this.prisma.course.findUniqueOrThrow({
+        where: { courseNo: course.courseNo },
+        select: { _count: true },
+      })
+    )._count;
+  }
 }

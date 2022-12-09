@@ -20,4 +20,13 @@ export class UserService {
       .findUniqueOrThrow({ where: { id: user.id } })
       .semesters();
   }
+
+  async _count(user: User) {
+    return (
+      await this.prisma.user.findUniqueOrThrow({
+        where: { id: user.id },
+        select: { _count: true },
+      })
+    )._count;
+  }
 }

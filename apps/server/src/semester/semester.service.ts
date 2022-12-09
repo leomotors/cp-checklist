@@ -76,4 +76,13 @@ export class SemesterService {
       .findUniqueOrThrow({ where: { id: semester.id } })
       .courses();
   }
+
+  async _count(semester: Semester) {
+    return (
+      await this.prisma.semester.findUniqueOrThrow({
+        where: { id: semester.id },
+        select: { _count: true },
+      })
+    )._count;
+  }
 }

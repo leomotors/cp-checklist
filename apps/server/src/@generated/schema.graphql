@@ -6,6 +6,10 @@ type AuthorizationToken {
   token: String!
 }
 
+type CourseCount {
+  semesters: Int!
+}
+
 type UserCount {
   semesters: Int!
 }
@@ -39,10 +43,6 @@ type Semester {
   createdAt: DateTime!
   updatedAt: DateTime!
   _count: SemesterCount!
-}
-
-type CourseCount {
-  semesters: Int!
 }
 
 type Course {

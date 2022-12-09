@@ -7,6 +7,7 @@ import {
 } from "@nestjs/graphql";
 
 import { Course } from "@generated/course/course.model";
+import { SemesterCount } from "@generated/semester/semester-count.output";
 import { Semester } from "@generated/semester/semester.model";
 import { User } from "@generated/user/user.model";
 
@@ -44,5 +45,10 @@ export class SemesterResolver {
   @ResolveField(() => [Course])
   courses(@Parent() semester: Semester) {
     return this.service.courses(semester);
+  }
+
+  @ResolveField(() => SemesterCount)
+  _count(@Parent() semester: Semester) {
+    return this.service._count(semester);
   }
 }
