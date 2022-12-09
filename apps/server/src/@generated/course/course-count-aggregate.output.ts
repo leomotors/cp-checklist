@@ -9,15 +9,6 @@ export class CourseCountAggregate {
     courseNo!: number;
 
     @Field(() => Int, {nullable:false})
-    academicYear!: number;
-
-    @Field(() => Int, {nullable:false})
-    semester!: number;
-
-    @Field(() => Int, {nullable:false})
-    studyProgram!: number;
-
-    @Field(() => Int, {nullable:false})
     abbrName!: number;
 
     @Field(() => Int, {nullable:false})

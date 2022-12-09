@@ -4,6 +4,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { EnumGenEdTypeFilter } from '../prisma/enum-gen-ed-type-filter.input';
+import { SemesterListRelationFilter } from '../semester/semester-list-relation-filter.input';
 
 @InputType()
 export class CourseWhereInput {
@@ -19,15 +20,6 @@ export class CourseWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     courseNo?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    academicYear?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    semester?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    studyProgram?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     abbrName?: StringFilter;
@@ -61,4 +53,7 @@ export class CourseWhereInput {
 
     @Field(() => EnumGenEdTypeFilter, {nullable:true})
     genEdType?: EnumGenEdTypeFilter;
+
+    @Field(() => SemesterListRelationFilter, {nullable:true})
+    semesters?: SemesterListRelationFilter;
 }

@@ -2,9 +2,6 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum CourseScalarFieldEnum {
     courseNo = "courseNo",
-    academicYear = "academicYear",
-    semester = "semester",
-    studyProgram = "studyProgram",
     abbrName = "abbrName",
     courseNameEn = "courseNameEn",
     courseNameTh = "courseNameTh",

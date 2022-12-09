@@ -20,6 +20,8 @@ model User {
   username String @unique
   password String
 
+  Semester Semester[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -34,7 +36,7 @@ enum GenEdType {
   NO
 }
 
-model Course {
+model RawCourse {
   courseNo     String @map("course_no")
   academicYear String @map("academic_year")
   semester     String
@@ -54,5 +56,38 @@ model Course {
   genEdType       GenEdType @map("gen_ed_type")
 
   @@unique([courseNo, academicYear, semester, studyProgram])
+  @@map("raw_course")
+}
+
+model Course {
+  courseNo String @id @map("course_no")
+
+  abbrName     String  @map("abbr_name")
+  courseNameEn String  @map("course_name_en")
+  courseNameTh String  @map("course_name_th")
+  courseDescEn String? @map("course_desc_en")
+  courseDescTh String? @map("course_desc_th")
+
+  courseCondition String    @map("course_condition")
+  credit          Float
+  creditHours     String    @map("credit_hours")
+  department      String
+  faculty         String
+  genEdType       GenEdType @map("gen_ed_type")
+
+  semesters Semester[]
+
   @@map("course")
+}
+
+model Semester {
+  id       String @id @default(cuid())
+  year     Int
+  semester Int
+
+  user    User     @relation(fields: [userId], references: [id])
+  userId  String   @map("user_id")
+  courses Course[]
+
+  @@map("semester")
 }

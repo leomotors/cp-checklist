@@ -21,15 +21,6 @@ export class CourseScalarWhereWithAggregatesInput {
     courseNo?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    academicYear?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    semester?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    studyProgram?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
     abbrName?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})

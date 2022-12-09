@@ -10,15 +10,6 @@ export class CourseMaxAggregate {
     courseNo?: string;
 
     @Field(() => String, {nullable:true})
-    academicYear?: string;
-
-    @Field(() => String, {nullable:true})
-    semester?: string;
-
-    @Field(() => String, {nullable:true})
-    studyProgram?: string;
-
-    @Field(() => String, {nullable:true})
     abbrName?: string;
 
     @Field(() => String, {nullable:true})

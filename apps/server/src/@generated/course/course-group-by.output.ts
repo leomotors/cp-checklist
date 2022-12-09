@@ -15,15 +15,6 @@ export class CourseGroupBy {
     courseNo!: string;
 
     @Field(() => String, {nullable:false})
-    academicYear!: string;
-
-    @Field(() => String, {nullable:false})
-    semester!: string;
-
-    @Field(() => String, {nullable:false})
-    studyProgram!: string;
-
-    @Field(() => String, {nullable:false})
     abbrName!: string;
 
     @Field(() => String, {nullable:false})

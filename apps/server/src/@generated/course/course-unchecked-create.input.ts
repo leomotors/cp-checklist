@@ -2,21 +2,13 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { GenEdType } from '../prisma/gen-ed-type.enum';
+import { SemesterUncheckedCreateNestedManyWithoutCoursesInput } from '../semester/semester-unchecked-create-nested-many-without-courses.input';
 
 @InputType()
 export class CourseUncheckedCreateInput {
 
     @Field(() => String, {nullable:false})
     courseNo!: string;
-
-    @Field(() => String, {nullable:false})
-    academicYear!: string;
-
-    @Field(() => String, {nullable:false})
-    semester!: string;
-
-    @Field(() => String, {nullable:false})
-    studyProgram!: string;
 
     @Field(() => String, {nullable:false})
     abbrName!: string;
@@ -50,4 +42,7 @@ export class CourseUncheckedCreateInput {
 
     @Field(() => GenEdType, {nullable:false})
     genEdType!: keyof typeof GenEdType;
+
+    @Field(() => SemesterUncheckedCreateNestedManyWithoutCoursesInput, {nullable:true})
+    semesters?: SemesterUncheckedCreateNestedManyWithoutCoursesInput;
 }

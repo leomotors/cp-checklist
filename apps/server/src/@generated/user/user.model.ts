@@ -1,6 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { Semester } from '../semester/semester.model';
+import { UserCount } from './user-count.output';
 
 @ObjectType()
 export class User {
@@ -14,9 +16,15 @@ export class User {
     @Field(() => String, {nullable:false})
     password!: string;
 
+    @Field(() => [Semester], {nullable:true})
+    Semester?: Array<Semester>;
+
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
 
     @Field(() => Date, {nullable:false})
     updatedAt!: Date;
+
+    @Field(() => UserCount, {nullable:false})
+    _count?: UserCount;
 }

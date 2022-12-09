@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
+import { SemesterListRelationFilter } from '../semester/semester-list-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -23,6 +24,9 @@ export class UserWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;
+
+    @Field(() => SemesterListRelationFilter, {nullable:true})
+    Semester?: SemesterListRelationFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

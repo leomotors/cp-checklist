@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { SemesterCreateNestedManyWithoutUserInput } from '../semester/semester-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateInput {
@@ -12,6 +13,9 @@ export class UserCreateInput {
 
     @Field(() => String, {nullable:false})
     password!: string;
+
+    @Field(() => SemesterCreateNestedManyWithoutUserInput, {nullable:true})
+    Semester?: SemesterCreateNestedManyWithoutUserInput;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

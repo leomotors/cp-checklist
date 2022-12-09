@@ -4,21 +4,13 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-operations.input';
 import { EnumGenEdTypeFieldUpdateOperationsInput } from '../prisma/enum-gen-ed-type-field-update-operations.input';
+import { SemesterUpdateManyWithoutCoursesNestedInput } from '../semester/semester-update-many-without-courses-nested.input';
 
 @InputType()
 export class CourseUpdateInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     courseNo?: StringFieldUpdateOperationsInput;
-
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    academicYear?: StringFieldUpdateOperationsInput;
-
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    semester?: StringFieldUpdateOperationsInput;
-
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    studyProgram?: StringFieldUpdateOperationsInput;
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     abbrName?: StringFieldUpdateOperationsInput;
@@ -52,4 +44,7 @@ export class CourseUpdateInput {
 
     @Field(() => EnumGenEdTypeFieldUpdateOperationsInput, {nullable:true})
     genEdType?: EnumGenEdTypeFieldUpdateOperationsInput;
+
+    @Field(() => SemesterUpdateManyWithoutCoursesNestedInput, {nullable:true})
+    semesters?: SemesterUpdateManyWithoutCoursesNestedInput;
 }

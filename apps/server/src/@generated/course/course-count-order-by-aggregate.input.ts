@@ -9,15 +9,6 @@ export class CourseCountOrderByAggregateInput {
     courseNo?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    academicYear?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    semester?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    studyProgram?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     abbrName?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
