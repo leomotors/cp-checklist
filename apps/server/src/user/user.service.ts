@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
 import { FindManyUserArgs } from "@generated/user/find-many-user.args";
+import { User } from "@generated/user/user.model";
 
 import { PrismaService } from "src/prisma.service";
 
@@ -10,5 +11,13 @@ export class UserService {
 
   findMany(args: FindManyUserArgs) {
     return this.prisma.user.findMany(args);
+  }
+
+  // Field Resolvers
+
+  semesters(user: User) {
+    return this.prisma.user
+      .findUniqueOrThrow({ where: { id: user.id } })
+      .semesters();
   }
 }

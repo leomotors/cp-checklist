@@ -4,6 +4,7 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 import { CourseListRelationFilter } from '../course/course-list-relation-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class SemesterWhereInput {
@@ -34,4 +35,10 @@ export class SemesterWhereInput {
 
     @Field(() => CourseListRelationFilter, {nullable:true})
     courses?: CourseListRelationFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 }

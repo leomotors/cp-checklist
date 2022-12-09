@@ -26,7 +26,7 @@ export class UserWhereInput {
     password?: StringFilter;
 
     @Field(() => SemesterListRelationFilter, {nullable:true})
-    Semester?: SemesterListRelationFilter;
+    semesters?: SemesterListRelationFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

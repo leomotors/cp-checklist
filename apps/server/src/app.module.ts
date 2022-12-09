@@ -11,6 +11,7 @@ import { AppController } from "./app.controller";
 
 import { AuthModule } from "./auth/auth.module";
 import { CourseModule } from "./course/course.module";
+import { SemesterModule } from "./semester/semester.module";
 import { UserModule } from "./user/user.module";
 
 @Global()
@@ -25,9 +26,10 @@ import { UserModule } from "./user/user.module";
       plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
       autoSchemaFile: "./src/@generated/schema.graphql",
     }),
-    UserModule,
-    CourseModule,
     AuthModule,
+    CourseModule,
+    SemesterModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [PrismaService],

@@ -17,7 +17,7 @@ export class User {
     password!: string;
 
     @Field(() => [Semester], {nullable:true})
-    Semester?: Array<Semester>;
+    semesters?: Array<Semester>;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date;

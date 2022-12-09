@@ -4,7 +4,9 @@ export enum SemesterScalarFieldEnum {
     id = "id",
     year = "year",
     semester = "semester",
-    userId = "userId"
+    userId = "userId",
+    createdAt = "createdAt",
+    updatedAt = "updatedAt"
 }
 
 

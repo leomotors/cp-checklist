@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { UserCreateNestedOneWithoutSemesterInput } from '../user/user-create-nested-one-without-semester.input';
+import { UserCreateNestedOneWithoutSemestersInput } from '../user/user-create-nested-one-without-semesters.input';
 
 @InputType()
 export class SemesterCreateWithoutCoursesInput {
@@ -15,6 +15,12 @@ export class SemesterCreateWithoutCoursesInput {
     @Field(() => Int, {nullable:false})
     semester!: number;
 
-    @Field(() => UserCreateNestedOneWithoutSemesterInput, {nullable:false})
-    user!: UserCreateNestedOneWithoutSemesterInput;
+    @Field(() => UserCreateNestedOneWithoutSemestersInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutSemestersInput;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

@@ -13,4 +13,10 @@ export class SemesterCreateManyUserInput {
 
     @Field(() => Int, {nullable:false})
     semester!: number;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

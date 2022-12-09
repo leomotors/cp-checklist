@@ -22,6 +22,12 @@ export class SemesterGroupBy {
     @Field(() => String, {nullable:false})
     userId!: string;
 
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
+
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
+
     @Field(() => SemesterCountAggregate, {nullable:true})
     _count?: SemesterCountAggregate;
 

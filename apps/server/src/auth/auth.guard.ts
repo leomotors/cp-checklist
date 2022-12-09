@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate {
       this.reflector.getAllAndOverride<AuthRole>(AuthKey, [
         context.getHandler(),
         context.getClass(),
-      ]) ?? "Public";
+      ]) ?? "Admin";
 
     if (role === "Public") return true;
 

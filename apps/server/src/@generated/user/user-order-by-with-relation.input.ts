@@ -16,7 +16,7 @@ export class UserOrderByWithRelationInput {
     password?: keyof typeof SortOrder;
 
     @Field(() => SemesterOrderByRelationAggregateInput, {nullable:true})
-    Semester?: SemesterOrderByRelationAggregateInput;
+    semesters?: SemesterOrderByRelationAggregateInput;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;

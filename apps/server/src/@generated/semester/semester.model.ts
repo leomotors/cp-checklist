@@ -27,6 +27,12 @@ export class Semester {
     @Field(() => [Course], {nullable:true})
     courses?: Array<Course>;
 
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
+
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
+
     @Field(() => SemesterCount, {nullable:false})
     _count?: SemesterCount;
 }

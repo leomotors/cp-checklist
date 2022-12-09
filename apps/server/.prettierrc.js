@@ -7,6 +7,7 @@ const config = {
     "^@nestjs",
     "<THIRD_PARTY_MODULES>",
     "^@cp-checklist",
+    "^@generated",
     "^src/",
     "^./prisma",
     "^./app",

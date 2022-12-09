@@ -2,8 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
-import { UserUpdateOneRequiredWithoutSemesterNestedInput } from '../user/user-update-one-required-without-semester-nested.input';
+import { UserUpdateOneRequiredWithoutSemestersNestedInput } from '../user/user-update-one-required-without-semesters-nested.input';
 import { CourseUpdateManyWithoutSemestersNestedInput } from '../course/course-update-many-without-semesters-nested.input';
+import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
 export class SemesterUpdateInput {
@@ -17,9 +18,15 @@ export class SemesterUpdateInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     semester?: IntFieldUpdateOperationsInput;
 
-    @Field(() => UserUpdateOneRequiredWithoutSemesterNestedInput, {nullable:true})
-    user?: UserUpdateOneRequiredWithoutSemesterNestedInput;
+    @Field(() => UserUpdateOneRequiredWithoutSemestersNestedInput, {nullable:true})
+    user?: UserUpdateOneRequiredWithoutSemestersNestedInput;
 
     @Field(() => CourseUpdateManyWithoutSemestersNestedInput, {nullable:true})
     courses?: CourseUpdateManyWithoutSemestersNestedInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 }

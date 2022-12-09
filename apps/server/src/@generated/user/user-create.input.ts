@@ -15,7 +15,7 @@ export class UserCreateInput {
     password!: string;
 
     @Field(() => SemesterCreateNestedManyWithoutUserInput, {nullable:true})
-    Semester?: SemesterCreateNestedManyWithoutUserInput;
+    semesters?: SemesterCreateNestedManyWithoutUserInput;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

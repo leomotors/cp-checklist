@@ -17,7 +17,7 @@ export class UserUpdateInput {
     password?: StringFieldUpdateOperationsInput;
 
     @Field(() => SemesterUpdateManyWithoutUserNestedInput, {nullable:true})
-    Semester?: SemesterUpdateManyWithoutUserNestedInput;
+    semesters?: SemesterUpdateManyWithoutUserNestedInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: DateTimeFieldUpdateOperationsInput;

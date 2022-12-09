@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
+import { Course } from "@generated/course/course.model";
 import { FindManyCourseArgs } from "@generated/course/find-many-course.args";
 
 import { PrismaService } from "src/prisma.service";
@@ -10,5 +11,13 @@ export class CourseService {
 
   findMany(args: FindManyCourseArgs) {
     return this.prisma.course.findMany(args);
+  }
+
+  // Field Resolvers
+
+  semesters(course: Course) {
+    return this.prisma.course
+      .findUniqueOrThrow({ where: { courseNo: course.courseNo } })
+      .semesters();
   }
 }

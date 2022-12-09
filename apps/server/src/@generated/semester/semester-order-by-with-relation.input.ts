@@ -24,4 +24,10 @@ export class SemesterOrderByWithRelationInput {
 
     @Field(() => CourseOrderByRelationAggregateInput, {nullable:true})
     courses?: CourseOrderByRelationAggregateInput;
+
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
 }
