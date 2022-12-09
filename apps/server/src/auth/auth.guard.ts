@@ -55,6 +55,14 @@ export class AuthGuard implements CanActivate {
       );
     }
 
+    if (user.id === "admin") {
+      return true;
+    }
+
+    if (role === "Admin") {
+      return false;
+    }
+
     const pUser = this.service.findUser(user.id);
 
     if (!pUser) {

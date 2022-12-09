@@ -6,11 +6,47 @@ type AuthorizationToken {
   token: String!
 }
 
+type UserCount {
+  semesters: Int!
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  semesters: [Semester!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: UserCount!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type SemesterCount {
+  courses: Int!
+}
+
+type Semester {
+  id: ID!
+  year: Int!
+  semester: Int!
+  user: User!
+  userId: String!
+  courses: [Course!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: SemesterCount!
+}
+
+type CourseCount {
+  semesters: Int!
+}
+
 type Course {
-  courseNo: String!
-  academicYear: String!
-  semester: String!
-  studyProgram: String!
+  courseNo: ID!
   abbrName: String!
   courseNameEn: String!
   courseNameTh: String!
@@ -22,6 +58,8 @@ type Course {
   department: String!
   faculty: String!
   genEdType: GenEdType!
+  semesters: [Semester!]
+  _count: CourseCount!
 }
 
 enum GenEdType {
@@ -32,33 +70,28 @@ enum GenEdType {
   NO
 }
 
-type User {
-  id: ID!
-  username: String!
-  password: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Query {
-  users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
   courses(where: CourseWhereInput, orderBy: [CourseOrderByWithRelationInput!], cursor: CourseWhereUniqueInput, take: Int, skip: Int, distinct: [CourseScalarFieldEnum!]): [Course!]!
+  users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
 }
 
-input UserWhereInput {
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  id: StringFilter
-  username: StringFilter
-  password: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
+input CourseWhereInput {
+  AND: [CourseWhereInput!]
+  OR: [CourseWhereInput!]
+  NOT: [CourseWhereInput!]
+  courseNo: StringFilter
+  abbrName: StringFilter
+  courseNameEn: StringFilter
+  courseNameTh: StringFilter
+  courseDescEn: StringNullableFilter
+  courseDescTh: StringNullableFilter
+  courseCondition: StringFilter
+  credit: FloatFilter
+  creditHours: StringFilter
+  department: StringFilter
+  faculty: StringFilter
+  genEdType: EnumGenEdTypeFilter
+  semesters: SemesterListRelationFilter
 }
 
 input StringFilter {
@@ -93,75 +126,6 @@ input NestedStringFilter {
   startsWith: String
   endsWith: String
   not: NestedStringFilter
-}
-
-input DateTimeFilter {
-  equals: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-  not: NestedDateTimeFilter
-}
-
-input NestedDateTimeFilter {
-  equals: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-  not: NestedDateTimeFilter
-}
-
-input UserOrderByWithRelationInput {
-  id: SortOrder
-  username: SortOrder
-  password: SortOrder
-  createdAt: SortOrder
-  updatedAt: SortOrder
-}
-
-enum SortOrder {
-  asc
-  desc
-}
-
-input UserWhereUniqueInput {
-  id: String
-  username: String
-}
-
-enum UserScalarFieldEnum {
-  id
-  username
-  password
-  createdAt
-  updatedAt
-}
-
-input CourseWhereInput {
-  AND: [CourseWhereInput!]
-  OR: [CourseWhereInput!]
-  NOT: [CourseWhereInput!]
-  courseNo: StringFilter
-  academicYear: StringFilter
-  semester: StringFilter
-  studyProgram: StringFilter
-  abbrName: StringFilter
-  courseNameEn: StringFilter
-  courseNameTh: StringFilter
-  courseDescEn: StringNullableFilter
-  courseDescTh: StringNullableFilter
-  courseCondition: StringFilter
-  credit: FloatFilter
-  creditHours: StringFilter
-  department: StringFilter
-  faculty: StringFilter
-  genEdType: EnumGenEdTypeFilter
 }
 
 input StringNullableFilter {
@@ -229,11 +193,95 @@ input NestedEnumGenEdTypeFilter {
   not: NestedEnumGenEdTypeFilter
 }
 
+input SemesterListRelationFilter {
+  every: SemesterWhereInput
+  some: SemesterWhereInput
+  none: SemesterWhereInput
+}
+
+input SemesterWhereInput {
+  AND: [SemesterWhereInput!]
+  OR: [SemesterWhereInput!]
+  NOT: [SemesterWhereInput!]
+  id: StringFilter
+  year: IntFilter
+  semester: IntFilter
+  user: UserRelationFilter
+  userId: StringFilter
+  courses: CourseListRelationFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  username: StringFilter
+  password: StringFilter
+  semesters: SemesterListRelationFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input CourseListRelationFilter {
+  every: CourseWhereInput
+  some: CourseWhereInput
+  none: CourseWhereInput
+}
+
 input CourseOrderByWithRelationInput {
   courseNo: SortOrder
-  academicYear: SortOrder
-  semester: SortOrder
-  studyProgram: SortOrder
   abbrName: SortOrder
   courseNameEn: SortOrder
   courseNameTh: SortOrder
@@ -245,24 +293,24 @@ input CourseOrderByWithRelationInput {
   department: SortOrder
   faculty: SortOrder
   genEdType: SortOrder
+  semesters: SemesterOrderByRelationAggregateInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input SemesterOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input CourseWhereUniqueInput {
-  courseNo_academicYear_semester_studyProgram: CourseCourseNoAcademicYearSemesterStudyProgramCompoundUniqueInput
-}
-
-input CourseCourseNoAcademicYearSemesterStudyProgramCompoundUniqueInput {
-  courseNo: String!
-  academicYear: String!
-  semester: String!
-  studyProgram: String!
+  courseNo: String
 }
 
 enum CourseScalarFieldEnum {
   courseNo
-  academicYear
-  semester
-  studyProgram
   abbrName
   courseNameEn
   courseNameTh
@@ -276,7 +324,32 @@ enum CourseScalarFieldEnum {
   genEdType
 }
 
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  username: SortOrder
+  password: SortOrder
+  semesters: SemesterOrderByRelationAggregateInput
+  createdAt: SortOrder
+  updatedAt: SortOrder
+}
+
+input UserWhereUniqueInput {
+  id: String
+  username: String
+}
+
+enum UserScalarFieldEnum {
+  id
+  username
+  password
+  createdAt
+  updatedAt
+}
+
 type Mutation {
   login(username: String!, password: String!): AuthorizationToken!
   register(username: String!, password: String!): AuthorizationToken!
+  createSemester(year: Int!, semester: Int!): Semester!
+  addCourse(courseNo: String!, semesterId: String!): Semester!
+  removeCourse(courseNo: String!, semesterId: String!): Semester!
 }
