@@ -20,7 +20,11 @@ export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
   useEffect(() => {
     if (Page.authStatus === "redirect" && isAuth && !loading) {
       router.replace("/home");
-    } else if (Page.authStatus !== "public" && !isAuth && !loading) {
+    } else if (
+      (!Page.authStatus || Page.authStatus === "private") &&
+      !isAuth &&
+      !loading
+    ) {
       router.replace("/");
     }
   }, [isAuth, Page.authStatus, router, loading]);

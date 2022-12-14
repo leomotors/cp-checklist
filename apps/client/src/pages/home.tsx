@@ -1,11 +1,18 @@
+import { Button } from "@cp-checklist/design";
+
 import { MyPage } from "$core/@types";
 
 import { useUser } from "$modules/authentication";
 
 const HomePage: MyPage = () => {
-  const { username } = useUser();
+  const { resetToken, username } = useUser();
 
-  return <main>Hello {username}</main>;
+  return (
+    <main>
+      Hello {username}
+      <Button onClick={resetToken}>Logout</Button>
+    </main>
+  );
 };
 
 HomePage.authStatus = "private";

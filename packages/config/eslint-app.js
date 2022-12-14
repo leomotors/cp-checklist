@@ -35,6 +35,8 @@ const config = {
         reservedFirst: true,
       },
     ],
+    "react/jsx-key": "error",
+    "react/display-name": "error",
     "sort-destructure-keys/sort-destructure-keys": "warn",
   },
   overrides: [

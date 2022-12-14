@@ -21,33 +21,35 @@ export type AuthorizationToken = {
 
 export type Course = {
   __typename?: 'Course';
+  _count: CourseCount;
   abbrName: Scalars['String'];
-  academicYear: Scalars['String'];
   courseCondition: Scalars['String'];
   courseDescEn?: Maybe<Scalars['String']>;
   courseDescTh?: Maybe<Scalars['String']>;
   courseNameEn: Scalars['String'];
   courseNameTh: Scalars['String'];
-  courseNo: Scalars['String'];
+  courseNo: Scalars['ID'];
   credit: Scalars['Float'];
   creditHours: Scalars['String'];
   department: Scalars['String'];
   faculty: Scalars['String'];
   genEdType: GenEdType;
-  semester: Scalars['String'];
-  studyProgram: Scalars['String'];
+  semesters?: Maybe<Array<Semester>>;
 };
 
-export type CourseCourseNoAcademicYearSemesterStudyProgramCompoundUniqueInput = {
-  academicYear: Scalars['String'];
-  courseNo: Scalars['String'];
-  semester: Scalars['String'];
-  studyProgram: Scalars['String'];
+export type CourseCount = {
+  __typename?: 'CourseCount';
+  semesters: Scalars['Int'];
+};
+
+export type CourseListRelationFilter = {
+  every?: InputMaybe<CourseWhereInput>;
+  none?: InputMaybe<CourseWhereInput>;
+  some?: InputMaybe<CourseWhereInput>;
 };
 
 export type CourseOrderByWithRelationInput = {
   abbrName?: InputMaybe<SortOrder>;
-  academicYear?: InputMaybe<SortOrder>;
   courseCondition?: InputMaybe<SortOrder>;
   courseDescEn?: InputMaybe<SortOrder>;
   courseDescTh?: InputMaybe<SortOrder>;
@@ -59,13 +61,11 @@ export type CourseOrderByWithRelationInput = {
   department?: InputMaybe<SortOrder>;
   faculty?: InputMaybe<SortOrder>;
   genEdType?: InputMaybe<SortOrder>;
-  semester?: InputMaybe<SortOrder>;
-  studyProgram?: InputMaybe<SortOrder>;
+  semesters?: InputMaybe<SemesterOrderByRelationAggregateInput>;
 };
 
 export enum CourseScalarFieldEnum {
   AbbrName = 'abbrName',
-  AcademicYear = 'academicYear',
   CourseCondition = 'courseCondition',
   CourseDescEn = 'courseDescEn',
   CourseDescTh = 'courseDescTh',
@@ -76,9 +76,7 @@ export enum CourseScalarFieldEnum {
   CreditHours = 'creditHours',
   Department = 'department',
   Faculty = 'faculty',
-  GenEdType = 'genEdType',
-  Semester = 'semester',
-  StudyProgram = 'studyProgram'
+  GenEdType = 'genEdType'
 }
 
 export type CourseWhereInput = {
@@ -86,7 +84,6 @@ export type CourseWhereInput = {
   NOT?: InputMaybe<Array<CourseWhereInput>>;
   OR?: InputMaybe<Array<CourseWhereInput>>;
   abbrName?: InputMaybe<StringFilter>;
-  academicYear?: InputMaybe<StringFilter>;
   courseCondition?: InputMaybe<StringFilter>;
   courseDescEn?: InputMaybe<StringNullableFilter>;
   courseDescTh?: InputMaybe<StringNullableFilter>;
@@ -98,12 +95,11 @@ export type CourseWhereInput = {
   department?: InputMaybe<StringFilter>;
   faculty?: InputMaybe<StringFilter>;
   genEdType?: InputMaybe<EnumGenEdTypeFilter>;
-  semester?: InputMaybe<StringFilter>;
-  studyProgram?: InputMaybe<StringFilter>;
+  semesters?: InputMaybe<SemesterListRelationFilter>;
 };
 
 export type CourseWhereUniqueInput = {
-  courseNo_academicYear_semester_studyProgram?: InputMaybe<CourseCourseNoAcademicYearSemesterStudyProgramCompoundUniqueInput>;
+  courseNo?: InputMaybe<Scalars['String']>;
 };
 
 export type DateTimeFilter = {
@@ -143,10 +139,36 @@ export enum GenEdType {
   So = 'SO'
 }
 
+export type IntFilter = {
+  equals?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<NestedIntFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  addCourse: Semester;
+  createSemester: Semester;
   login: AuthorizationToken;
   register: AuthorizationToken;
+  removeCourse: Semester;
+};
+
+
+export type MutationAddCourseArgs = {
+  courseNo: Scalars['String'];
+  semesterId: Scalars['String'];
+};
+
+
+export type MutationCreateSemesterArgs = {
+  semester: Scalars['Int'];
+  year: Scalars['Int'];
 };
 
 
@@ -159,6 +181,12 @@ export type MutationLoginArgs = {
 export type MutationRegisterArgs = {
   password: Scalars['String'];
   username: Scalars['String'];
+};
+
+
+export type MutationRemoveCourseArgs = {
+  courseNo: Scalars['String'];
+  semesterId: Scalars['String'];
 };
 
 export type NestedDateTimeFilter = {
@@ -188,6 +216,17 @@ export type NestedFloatFilter = {
   lte?: InputMaybe<Scalars['Float']>;
   not?: InputMaybe<NestedFloatFilter>;
   notIn?: InputMaybe<Array<Scalars['Float']>>;
+};
+
+export type NestedIntFilter = {
+  equals?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<Scalars['Int']>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<NestedIntFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type NestedStringFilter = {
@@ -249,6 +288,48 @@ export enum QueryMode {
   Insensitive = 'insensitive'
 }
 
+export type Semester = {
+  __typename?: 'Semester';
+  _count: SemesterCount;
+  courses?: Maybe<Array<Course>>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  semester: Scalars['Int'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+  year: Scalars['Int'];
+};
+
+export type SemesterCount = {
+  __typename?: 'SemesterCount';
+  courses: Scalars['Int'];
+};
+
+export type SemesterListRelationFilter = {
+  every?: InputMaybe<SemesterWhereInput>;
+  none?: InputMaybe<SemesterWhereInput>;
+  some?: InputMaybe<SemesterWhereInput>;
+};
+
+export type SemesterOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type SemesterWhereInput = {
+  AND?: InputMaybe<Array<SemesterWhereInput>>;
+  NOT?: InputMaybe<Array<SemesterWhereInput>>;
+  OR?: InputMaybe<Array<SemesterWhereInput>>;
+  courses?: InputMaybe<CourseListRelationFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  semester?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<StringFilter>;
+  year?: InputMaybe<IntFilter>;
+};
+
 export enum SortOrder {
   Asc = 'asc',
   Desc = 'desc'
@@ -286,19 +367,32 @@ export type StringNullableFilter = {
 
 export type User = {
   __typename?: 'User';
+  _count: UserCount;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   password: Scalars['String'];
+  semesters?: Maybe<Array<Semester>>;
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
+};
+
+export type UserCount = {
+  __typename?: 'UserCount';
+  semesters: Scalars['Int'];
 };
 
 export type UserOrderByWithRelationInput = {
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   password?: InputMaybe<SortOrder>;
+  semesters?: InputMaybe<SemesterOrderByRelationAggregateInput>;
   updatedAt?: InputMaybe<SortOrder>;
   username?: InputMaybe<SortOrder>;
+};
+
+export type UserRelationFilter = {
+  is?: InputMaybe<UserWhereInput>;
+  isNot?: InputMaybe<UserWhereInput>;
 };
 
 export enum UserScalarFieldEnum {
@@ -316,6 +410,7 @@ export type UserWhereInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   password?: InputMaybe<StringFilter>;
+  semesters?: InputMaybe<SemesterListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   username?: InputMaybe<StringFilter>;
 };
