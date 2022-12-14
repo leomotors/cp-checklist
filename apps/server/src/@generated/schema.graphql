@@ -43,6 +43,7 @@ type Semester {
   createdAt: DateTime!
   updatedAt: DateTime!
   _count: SemesterCount!
+  totalCredits: Float!
 }
 
 type Course {
@@ -72,7 +73,9 @@ enum GenEdType {
 
 type Query {
   courses(where: CourseWhereInput, orderBy: [CourseOrderByWithRelationInput!], cursor: CourseWhereUniqueInput, take: Int, skip: Int, distinct: [CourseScalarFieldEnum!]): [Course!]!
+  mySemesters: [Semester!]!
   users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
+  me: User!
 }
 
 input CourseWhereInput {

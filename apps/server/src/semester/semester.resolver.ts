@@ -1,7 +1,9 @@
 import {
   Args,
+  Float,
   Mutation,
   Parent,
+  Query,
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
@@ -21,6 +23,11 @@ import { SemesterService } from "./semester.service";
 @Permission("User")
 export class SemesterResolver {
   constructor(private readonly service: SemesterService) {}
+
+  @Query(() => [Semester])
+  mySemesters(@UserContext() user: User) {
+    return this.service.mySemesters(user.id);
+  }
 
   @Mutation(() => Semester)
   createSemester(@Args() args: CreateSemesterArgs, @UserContext() user: User) {
@@ -45,6 +52,11 @@ export class SemesterResolver {
   @ResolveField(() => [Course])
   courses(@Parent() semester: Semester) {
     return this.service.courses(semester);
+  }
+
+  @ResolveField(() => Float)
+  totalCredits(@Parent() semester: Semester) {
+    return this.service.totalCredits(semester);
   }
 
   @ResolveField(() => SemesterCount)

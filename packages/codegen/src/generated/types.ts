@@ -260,6 +260,8 @@ export type NestedStringNullableFilter = {
 export type Query = {
   __typename?: 'Query';
   courses: Array<Course>;
+  me: User;
+  mySemesters: Array<Semester>;
   users: Array<User>;
 };
 
@@ -295,6 +297,7 @@ export type Semester = {
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   semester: Scalars['Int'];
+  totalCredits: Scalars['Float'];
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];

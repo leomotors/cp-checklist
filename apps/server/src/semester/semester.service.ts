@@ -23,6 +23,14 @@ export class SemesterService {
     });
   }
 
+  mySemesters(id: string) {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id },
+      })
+      .semesters();
+  }
+
   async _userSemester(semesterId: string, userId: string) {
     const semester = await this.prisma.semester.findUnique({
       where: { id: semesterId },
@@ -75,6 +83,23 @@ export class SemesterService {
     return this.prisma.semester
       .findUniqueOrThrow({ where: { id: semester.id } })
       .courses();
+  }
+
+  async totalCredits(semester: Semester) {
+    return (
+      await this.prisma.course.aggregate({
+        where: {
+          semesters: {
+            some: {
+              id: semester.id,
+            },
+          },
+        },
+        _sum: {
+          credit: true,
+        },
+      })
+    )._sum.credit;
   }
 
   async _count(semester: Semester) {

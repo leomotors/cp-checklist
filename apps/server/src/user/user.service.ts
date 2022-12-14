@@ -13,6 +13,12 @@ export class UserService {
     return this.prisma.user.findMany(args);
   }
 
+  findUniqueOrThrow(id: string) {
+    return this.prisma.user.findUniqueOrThrow({
+      where: { id },
+    });
+  }
+
   // Field Resolvers
 
   semesters(user: User) {

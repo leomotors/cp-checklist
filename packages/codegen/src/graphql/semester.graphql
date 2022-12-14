@@ -1,0 +1,16 @@
+query MySemesters {
+  mySemesters {
+    id
+    year
+    semester
+    totalCredits
+    courses {
+      courseNo
+      abbrName
+      courseNameEn
+      courseNameTh
+      credit
+      genEdType
+    }
+  }
+}
