@@ -7,7 +7,7 @@
     "build": "nest build",
     "dev": "nest start --watch --preserveWatchOutput",
     "start": "node dist/main",
-    "lint": "eslint src --max-warnings=0",
+    "lint": "eslint src",
     "format": "eslint src --fix"
   },
   "dependencies": {

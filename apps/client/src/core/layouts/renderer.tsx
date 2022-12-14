@@ -3,13 +3,18 @@ import { FC, Fragment, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 
 import { MyPage } from "$core/@types";
+import { useUser } from "$modules/authentication";
 
-import { useUser } from "./hooks";
+import { HomeLayout } from "./HomeLayout";
 
 interface RendererProps {
   page: MyPage;
   props: Record<string, unknown>;
 }
+
+export const Layouts = {
+  Home: HomeLayout,
+};
 
 export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
   const router = useRouter();
@@ -29,7 +34,10 @@ export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
     }
   }, [isAuth, Page.authStatus, router, loading]);
 
-  const Layout = useMemo(() => Page.Layout || Fragment, [Page.Layout]);
+  const Layout = useMemo(
+    () => (Page.layout ? Layouts[Page.layout] : Fragment),
+    [Page.layout]
+  );
 
   switch (Page.authStatus) {
     case "public": {

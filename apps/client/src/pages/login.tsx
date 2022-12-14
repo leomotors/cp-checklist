@@ -5,7 +5,6 @@ import { Alert, Button, Input } from "@cp-checklist/design";
 
 import { MyPage } from "$core/@types";
 import { apolloError } from "$core/utils";
-
 import { useUser } from "$modules/authentication";
 
 const LoginPage: MyPage = () => {

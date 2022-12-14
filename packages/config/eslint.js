@@ -48,6 +48,11 @@ const config = {
       },
     },
   ],
+  settings: {
+    react: {
+      version: "^18.2.0",
+    },
+  },
 };
 
 module.exports = config;

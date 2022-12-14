@@ -1,14 +1,18 @@
-module.exports = {
-  ...require("@cp-checklist/config/prettier-app"),
+// @ts-check
+
+/** @type {import("@trivago/prettier-plugin-sort-imports").PrettierConfig} */
+const config = {
+  ...require("@cp-checklist/config/prettier"),
   importOrder: [
     "^react",
     "^next",
     "<THIRD_PARTY_MODULES>",
     "^@cp-checklist",
-    "^\\$core",
-    "^\\$modules",
+    "^\\$",
     "^\\$styles",
     "^[.][.]",
     "^[.]",
   ],
 };
+
+module.exports = config;

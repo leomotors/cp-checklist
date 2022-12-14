@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren } from "react";
-
 import { NextPage } from "next";
+
+import { Layouts } from "$core/layouts";
 
 export type MyPage<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
   /**
@@ -13,5 +13,5 @@ export type MyPage<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
    * @default "private"
    */
   authStatus?: "private" | "public" | "redirect";
-  Layout?: FC<PropsWithChildren>;
+  layout?: keyof typeof Layouts;
 };

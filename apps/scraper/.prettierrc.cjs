@@ -1,1 +1,1 @@
-module.exports = require("@cp-checklist/config/prettier-app");
+module.exports = require("@cp-checklist/config/prettier");
