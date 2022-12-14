@@ -1,11 +1,10 @@
 import { useState } from "react";
 
-import { ApolloError } from "@apollo/client";
-
 import { useLoginMutation } from "@cp-checklist/codegen";
 import { Alert, Button, Input } from "@cp-checklist/design";
 
 import { MyPage } from "$core/@types";
+import { apolloError } from "$core/utils";
 
 import { useUser } from "$modules/authentication";
 
@@ -33,7 +32,7 @@ const LoginPage: MyPage = () => {
         setToken(token);
       }
     } catch (err) {
-      setError((err as ApolloError).message);
+      setError(apolloError(err));
     }
   }
 
@@ -49,7 +48,7 @@ const LoginPage: MyPage = () => {
         <label className="font-bold">Username</label>
         <Input
           value={username}
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={(e) => setUsername(e.currentTarget.value.toLowerCase())}
         />
         <label className="font-bold">Password</label>
         <Input
