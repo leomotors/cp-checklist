@@ -2,26 +2,27 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const QUERY = `
-query Scrap2($filter: FilterInput!, $courseGroup: CourseGroupInput!) {
-  search(filter: $filter, courseGroup: $courseGroup) {
-    courseNo
-    abbrName
-    courseNameEn
-    courseNameTh
-    courseDescEn
-    courseDescTh
-    academicYear
-    courseCondition
-    credit
-    creditHours
-    department
-    faculty
-    genEdType
-    semester
-    studyProgram
+const QUERY = /* GraphQL */ `
+  query Scrap2($filter: FilterInput!, $courseGroup: CourseGroupInput!) {
+    search(filter: $filter, courseGroup: $courseGroup) {
+      courseNo
+      abbrName
+      courseNameEn
+      courseNameTh
+      courseDescEn
+      courseDescTh
+      academicYear
+      courseCondition
+      credit
+      creditHours
+      department
+      faculty
+      genEdType
+      semester
+      studyProgram
+    }
   }
-}`;
+`;
 
 for (const matrix of [
   ["2565", "2"],
