@@ -14,7 +14,7 @@
     "@cp-checklist/design": "workspace:0.0.0",
     "clsx": "^1.2.1",
     "jwt-decode": "^3.1.2",
-    "next": "13.0.6",
+    "next": "13.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -27,7 +27,7 @@
     "@types/react-datepicker": "^4.8.0",
     "autoprefixer": "^10.4.13",
     "eslint": "8.29.0",
-    "eslint-config-next": "^13.0.6",
+    "eslint-config-next": "^13.0.7",
     "next-transpile-modules": "10.0.0",
     "postcss": "^8.4.20",
     "sass": "^1.56.2",

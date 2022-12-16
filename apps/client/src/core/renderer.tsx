@@ -5,16 +5,12 @@ import { useRouter } from "next/router";
 import { MyPage } from "$core/@types";
 import { useUser } from "$modules/authentication";
 
-import { HomeLayout } from "./HomeLayout";
+import { Layouts } from "./layouts";
 
 interface RendererProps {
   page: MyPage;
   props: Record<string, unknown>;
 }
-
-export const Layouts = {
-  Home: HomeLayout,
-};
 
 export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
   const router = useRouter();

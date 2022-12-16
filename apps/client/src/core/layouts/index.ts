@@ -1,2 +1,2 @@
 export { HomeLayout } from "./HomeLayout";
-export * from "./renderer";
+export * from "./layouts";

@@ -44,13 +44,19 @@ const LoginPage: MyPage = () => {
       {error && <Alert variant="error">{error}</Alert>}
 
       <form className="flex flex-col gap-2">
-        <label className="font-bold">Username</label>
+        <label className="font-bold" htmlFor="login-username">
+          Username
+        </label>
         <Input
+          id="login-username"
           value={username}
           onChange={(e) => setUsername(e.currentTarget.value.toLowerCase())}
         />
-        <label className="font-bold">Password</label>
+        <label className="font-bold" htmlFor="login-password">
+          Password
+        </label>
         <Input
+          id="login-password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}

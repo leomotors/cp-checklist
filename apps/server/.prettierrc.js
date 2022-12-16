@@ -6,5 +6,5 @@ const {
 } = require("@leomotors/config/prettier");
 
 module.exports = withSortImports({
-  importOrder: orderNestWithOrg("cp-checklist"),
+  importOrder: orderNestWithOrg("@cp-checklist"),
 });
