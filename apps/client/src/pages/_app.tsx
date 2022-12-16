@@ -5,7 +5,7 @@ import { ApolloProvider } from "@apollo/client";
 
 import { createApolloClient } from "@cp-checklist/codegen";
 
-import { Renderer } from "$core/layouts";
+import { Renderer } from "$core/renderer";
 import { AuthProvider } from "$modules/authentication";
 
 import "$styles/global.scss";
