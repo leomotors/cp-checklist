@@ -1,1 +1,1 @@
-module.exports = require("@cp-checklist/config/eslint");
+module.exports = require("@leomotors/config/eslint").reactConfig();

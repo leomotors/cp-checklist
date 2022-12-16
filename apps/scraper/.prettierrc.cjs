@@ -1,1 +1,1 @@
-module.exports = require("@cp-checklist/config/prettier");
+module.exports = require("@leomotors/config/prettier").withSortImports();

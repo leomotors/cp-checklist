@@ -1,18 +1,10 @@
 // @ts-check
 
-/** @type {import("@trivago/prettier-plugin-sort-imports").PrettierConfig} */
-const config = {
-  ...require("@cp-checklist/config/prettier"),
-  importOrder: [
-    "^react",
-    "^next",
-    "<THIRD_PARTY_MODULES>",
-    "^@cp-checklist",
-    "^\\$",
-    "^\\$styles",
-    "^[.][.]",
-    "^[.]",
-  ],
-};
+const {
+  withSortImports,
+  orderNextWithOrg,
+} = require("@leomotors/config/prettier");
 
-module.exports = config;
+module.exports = withSortImports({
+  importOrder: orderNextWithOrg("cp-checklist"),
+});
