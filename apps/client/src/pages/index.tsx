@@ -10,7 +10,7 @@ const IndexPage: MyPage = () => {
       <h1 className="text-6xl font-bold text-pink-500">CP Checklist</h1>
 
       <p className="text-center text-4xl font-bold">
-        Are you ready to graduate checklist for CP
+        Are you ready to graduate checklist for CP 🥗
       </p>
 
       <Link href="/login">
