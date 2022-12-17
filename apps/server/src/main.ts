@@ -7,7 +7,11 @@ const PORT = 5111;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      forbidUnknownValues: false,
+    })
+  );
 
   await app.listen(PORT);
   console.log(

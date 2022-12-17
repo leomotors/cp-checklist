@@ -16,13 +16,10 @@ export const Modal: FC<ModalProps> = ({
   if (showModal) {
     return (
       <div
-        className="fixed inset-0 z-50 bg-[#C4C4C4]/[0.8] backdrop-blur-sm"
+        className="fixed inset-0 z-[200] bg-[#C4C4C4]/[0.8] backdrop-blur-sm"
         onClick={onClickOutside}
       >
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {children}
         </div>
       </div>

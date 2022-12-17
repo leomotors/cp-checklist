@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from "react";
-import { BoxArrowUpRight, ChevronDown } from "react-bootstrap-icons";
+import { BoxArrowUpRight, ChevronDown, Trash } from "react-bootstrap-icons";
 
 import clsx from "clsx";
 
@@ -17,19 +17,18 @@ export interface CourseCardProps {
     | "credit"
     | "genEdType"
   >;
+  onRemove: () => unknown;
 }
 
 function facultyColor(courseNo: string, genEd: GenEdType) {
   if (courseNo.startsWith("2110")) return ["bg-pink-400", "bg-pink-300"];
-
   if (courseNo.startsWith("21")) return ["bg-red-400", "bg-red-300"];
-
   if (genEd === GenEdType.No) return ["bg-green-400", "bg-green-300"];
 
   return ["bg-blue-400", "bg-blue-300"];
 }
 
-export const CourseCard: FC<CourseCardProps> = ({ course }) => {
+export const CourseCard: FC<CourseCardProps> = ({ course, onRemove }) => {
   const [pColor, sColor] = useMemo(
     () => facultyColor(course.courseNo, course.genEdType),
     [course.courseNo, course.genEdType]
@@ -76,6 +75,10 @@ export const CourseCard: FC<CourseCardProps> = ({ course }) => {
             <ChevronDown
               className={clsx(expand && "rotate-180", "transition-transform")}
             />
+          </button>
+
+          <button onClick={() => onRemove()}>
+            <Trash />
           </button>
         </div>
       </div>

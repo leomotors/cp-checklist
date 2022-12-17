@@ -1,0 +1,25 @@
+query SearchCourses($query: String!, $take: Int!) {
+  searchCourses(query: $query, take: $take) {
+    courseNo
+    abbrName
+    courseNameEn
+    courseNameTh
+    courseDescEn
+    courseDescTh
+    credit
+    creditHours
+    genEdType
+  }
+}
+
+mutation AddCourse($courseNo: String!, $semesterId: String!) {
+  addCourse(courseNo: $courseNo, semesterId: $semesterId) {
+    id
+  }
+}
+
+mutation RemoveCourse($courseNo: String!, $semesterId: String!) {
+  removeCourse(courseNo: $courseNo, semesterId: $semesterId) {
+    id
+  }
+}

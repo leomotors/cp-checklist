@@ -12,7 +12,14 @@ query MySemesters {
       courseDescEn
       courseDescTh
       credit
+      creditHours
       genEdType
     }
+  }
+}
+
+mutation CreateSemester($year: Int!, $semester: Int!) {
+  createSemester(year: $year, semester: $semester) {
+    id
   }
 }

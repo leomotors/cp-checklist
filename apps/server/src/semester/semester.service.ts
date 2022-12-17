@@ -87,19 +87,21 @@ export class SemesterService {
 
   async totalCredits(semester: Semester) {
     return (
-      await this.prisma.course.aggregate({
-        where: {
-          semesters: {
-            some: {
-              id: semester.id,
+      (
+        await this.prisma.course.aggregate({
+          where: {
+            semesters: {
+              some: {
+                id: semester.id,
+              },
             },
           },
-        },
-        _sum: {
-          credit: true,
-        },
-      })
-    )._sum.credit;
+          _sum: {
+            credit: true,
+          },
+        })
+      )._sum.credit ?? 0
+    );
   }
 
   async _count(semester: Semester) {

@@ -71,8 +71,24 @@ enum GenEdType {
   NO
 }
 
+type PublicCourse {
+  courseNo: ID!
+  abbrName: String!
+  courseNameEn: String!
+  courseNameTh: String!
+  courseDescEn: String
+  courseDescTh: String
+  courseCondition: String!
+  credit: Float!
+  creditHours: String!
+  department: String!
+  faculty: String!
+  genEdType: GenEdType!
+}
+
 type Query {
   courses(where: CourseWhereInput, orderBy: [CourseOrderByWithRelationInput!], cursor: CourseWhereUniqueInput, take: Int, skip: Int, distinct: [CourseScalarFieldEnum!]): [Course!]!
+  searchCourses(query: String!, take: Int!): [PublicCourse!]!
   mySemesters: [Semester!]!
   users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
   me: User!

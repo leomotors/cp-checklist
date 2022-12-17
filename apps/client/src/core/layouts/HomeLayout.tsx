@@ -1,13 +1,15 @@
-import { useUser } from "$modules/authentication";
-import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
+
+import Link from "next/link";
+
+import { useUser } from "$modules/authentication";
 
 export const HomeLayout: FC<PropsWithChildren> = ({ children }) => {
   const { resetToken } = useUser();
 
   return (
     <div className="flex flex-col">
-      <nav className="absolute top-0 flex h-16 w-full items-center justify-evenly p-2 backdrop-blur-sm">
+      <nav className="sticky top-0 z-[100] flex h-16 w-full items-center justify-evenly p-2 backdrop-blur-sm">
         <Link className="text-xl font-bold" href="/">
           CP Checklist
         </Link>

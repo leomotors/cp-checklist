@@ -257,11 +257,28 @@ export type NestedStringNullableFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
+export type PublicCourse = {
+  __typename?: 'PublicCourse';
+  abbrName: Scalars['String'];
+  courseCondition: Scalars['String'];
+  courseDescEn?: Maybe<Scalars['String']>;
+  courseDescTh?: Maybe<Scalars['String']>;
+  courseNameEn: Scalars['String'];
+  courseNameTh: Scalars['String'];
+  courseNo: Scalars['ID'];
+  credit: Scalars['Float'];
+  creditHours: Scalars['String'];
+  department: Scalars['String'];
+  faculty: Scalars['String'];
+  genEdType: GenEdType;
+};
+
 export type Query = {
   __typename?: 'Query';
   courses: Array<Course>;
   me: User;
   mySemesters: Array<Semester>;
+  searchCourses: Array<PublicCourse>;
   users: Array<User>;
 };
 
@@ -273,6 +290,12 @@ export type QueryCoursesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CourseWhereInput>;
+};
+
+
+export type QuerySearchCoursesArgs = {
+  query: Scalars['String'];
+  take: Scalars['Int'];
 };
 
 
