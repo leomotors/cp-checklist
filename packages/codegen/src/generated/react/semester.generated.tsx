@@ -6,7 +6,7 @@ const defaultOptions = {} as const;
 export type MySemestersQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type MySemestersQuery = { __typename?: 'Query', mySemesters: Array<{ __typename?: 'Semester', id: string, year: number, semester: number, totalCredits: number, courses?: Array<{ __typename?: 'Course', courseNo: string, abbrName: string, courseNameEn: string, courseNameTh: string, courseDescEn?: string | null, courseDescTh?: string | null, credit: number, genEdType: Types.GenEdType }> | null }> };
+export type MySemestersQuery = { __typename?: 'Query', mySemesters: Array<{ __typename?: 'Semester', id: string, year: number, semester: number, totalCredits: number, courses: Array<{ __typename?: 'Course', courseNo: string, abbrName: string, courseNameEn: string, courseNameTh: string, courseDescEn?: string | null, courseDescTh?: string | null, credit: number, genEdType: Types.GenEdType }> }> };
 
 
 export const MySemestersDocument = gql`

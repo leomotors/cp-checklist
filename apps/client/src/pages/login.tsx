@@ -37,9 +37,7 @@ const LoginPage: MyPage = () => {
 
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-4 p-8">
-      <h1 className="text-6xl font-bold text-blue-600 dark:text-blue-500">
-        Login
-      </h1>
+      <h1 className="text-6xl font-bold text-pink-500">Login</h1>
 
       {error && <Alert variant="error">{error}</Alert>}
 

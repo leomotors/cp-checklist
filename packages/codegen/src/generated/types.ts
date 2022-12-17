@@ -34,7 +34,7 @@ export type Course = {
   department: Scalars['String'];
   faculty: Scalars['String'];
   genEdType: GenEdType;
-  semesters?: Maybe<Array<Semester>>;
+  semesters: Array<Semester>;
 };
 
 export type CourseCount = {
@@ -293,7 +293,7 @@ export enum QueryMode {
 export type Semester = {
   __typename?: 'Semester';
   _count: SemesterCount;
-  courses?: Maybe<Array<Course>>;
+  courses: Array<Course>;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   semester: Scalars['Int'];
@@ -374,7 +374,7 @@ export type User = {
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   password: Scalars['String'];
-  semesters?: Maybe<Array<Semester>>;
+  semesters: Array<Semester>;
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
 };

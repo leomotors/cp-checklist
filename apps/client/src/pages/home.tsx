@@ -1,13 +1,31 @@
 import { MyPage } from "$core/@types";
+import { SearchCourse, SemesterCard } from "$modules/home";
+import { useMySemestersQuery } from "@cp-checklist/codegen";
+import { Button } from "@cp-checklist/design";
+import { useState } from "react";
 
 const HomePage: MyPage = () => {
+  const { data } = useMySemestersQuery();
+  const semesters = data?.mySemesters;
+
+  // #region state
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  // #endregion state
+
   return (
-    <main className="flex h-screen flex-col items-center justify-center gap-4 p-8">
-      <p>Navbar here</p>
+    <main className="flex flex-col items-center justify-center gap-4 p-8">
+      <div className="flex flex-col lg:grid lg:grid-cols-2">
+        {semesters?.map((semester) => (
+          <SemesterCard key={semester.id} semester={semester} />
+        ))}
+      </div>
 
-      <h1>Are you ready to graduate?</h1>
+      <Button onClick={() => setShowSearchModal(true)} />
 
-      <p>placeholder for checklist</p>
+      <SearchCourse
+        showModal={showSearchModal}
+        onClose={() => setShowSearchModal(false)}
+      />
     </main>
   );
 };
