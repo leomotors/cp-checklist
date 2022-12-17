@@ -6,7 +6,10 @@ export interface AlertProps extends PropsWithChildren {
   variant: "success" | "warning" | "error" | "info";
 }
 
-export const Alert: FC<AlertProps> = memo(({ children, variant }) => {
+export const Alert: FC<AlertProps> = memo(function Alert({
+  children,
+  variant,
+}) {
   return (
     <div
       className={clsx(
@@ -21,5 +24,3 @@ export const Alert: FC<AlertProps> = memo(({ children, variant }) => {
     </div>
   );
 });
-
-Alert.displayName = "Alert";

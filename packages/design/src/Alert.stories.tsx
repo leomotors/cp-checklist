@@ -1,14 +1,18 @@
-import type { ComponentMeta } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { Alert, AlertProps } from "./Alert";
+import { Alert as Component } from "./Alert";
 
 export default {
-  title: "Alert",
-  component: Alert,
+  title: "Design System / Alert",
+  component: Component,
   args: {
-    variant: "warning",
+    variant: "success",
     children: <>Lorem ipsum dolor sit amet.</>,
   },
-} satisfies ComponentMeta<typeof Alert>;
+} satisfies ComponentMeta<typeof Component>;
 
-export const Default = (args: AlertProps) => <Alert {...args} />;
+export const Alert: ComponentStory<typeof Component> = (args) => (
+  <div className="w-fit">
+    <Component {...args} />
+  </div>
+);

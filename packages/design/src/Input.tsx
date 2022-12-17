@@ -2,7 +2,7 @@ import { FC, InputHTMLAttributes, PropsWithChildren } from "react";
 
 import clsx from "clsx";
 
-interface InputProps
+export interface InputProps
   extends PropsWithChildren,
     InputHTMLAttributes<HTMLInputElement> {}
 

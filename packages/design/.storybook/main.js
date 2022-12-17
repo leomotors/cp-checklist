@@ -16,7 +16,7 @@ const config = {
     },
   ],
   core: {
-    builder: "@storybook/builder-vite",
+    builder: "@storybook/builder-webpack5",
   },
 };
 
