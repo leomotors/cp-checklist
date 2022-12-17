@@ -1,10 +1,10 @@
 // @ts-check
 
 const {
-  withSortImports,
+  withTailwind,
   orderNextWithOrg,
 } = require("@leomotors/config/prettier");
 
-module.exports = withSortImports({
+module.exports = withTailwind({
   importOrder: orderNextWithOrg("@cp-checklist"),
 });

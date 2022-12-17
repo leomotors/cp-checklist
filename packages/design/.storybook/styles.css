@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css?family=Inter:r,b&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Thai:r,b&display=swap");
 
 :root {
   font-family: Inter, "IBM Plex Sans Thai", -apple-system, BlinkMacSystemFont,
