@@ -9,6 +9,8 @@ query MySemesters {
       abbrName
       courseNameEn
       courseNameTh
+      courseDescEn
+      courseDescTh
       credit
       genEdType
     }

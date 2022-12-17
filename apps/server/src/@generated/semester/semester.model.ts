@@ -24,7 +24,7 @@ export class Semester {
     @Field(() => String, {nullable:false})
     userId!: string;
 
-    @Field(() => [Course], {nullable:true})
+    @Field(() => [Course], {nullable:false})
     courses?: Array<Course>;
 
     @Field(() => Date, {nullable:false})

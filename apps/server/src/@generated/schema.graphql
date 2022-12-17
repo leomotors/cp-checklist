@@ -18,7 +18,7 @@ type User {
   id: ID!
   username: String!
   password: String!
-  semesters: [Semester!]
+  semesters: [Semester!]!
   createdAt: DateTime!
   updatedAt: DateTime!
   _count: UserCount!
@@ -39,7 +39,7 @@ type Semester {
   semester: Int!
   user: User!
   userId: String!
-  courses: [Course!]
+  courses: [Course!]!
   createdAt: DateTime!
   updatedAt: DateTime!
   _count: SemesterCount!
@@ -59,7 +59,7 @@ type Course {
   department: String!
   faculty: String!
   genEdType: GenEdType!
-  semesters: [Semester!]
+  semesters: [Semester!]!
   _count: CourseCount!
 }
 

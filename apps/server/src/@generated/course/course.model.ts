@@ -45,7 +45,7 @@ export class Course {
     @Field(() => GenEdType, {nullable:false})
     genEdType!: keyof typeof GenEdType;
 
-    @Field(() => [Semester], {nullable:true})
+    @Field(() => [Semester], {nullable:false})
     semesters?: Array<Semester>;
 
     @Field(() => CourseCount, {nullable:false})
