@@ -5,19 +5,30 @@
   "main": "./src/index.ts",
   "scripts": {
     "lint": "eslint src",
-    "format": "eslint src --fix"
+    "format": "eslint src --fix",
+    "storybook": "start-storybook dev -p 5112"
   },
   "dependencies": {
     "clsx": "^1.2.1"
   },
   "devDependencies": {
     "@cp-checklist/config": "workspace:0.0.0",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-interactions": "^6.5.14",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-vite": "^0.2.6",
+    "@storybook/core-common": "^6.5.14",
+    "@storybook/react": "^6.5.14",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
-    "eslint": "^8.29.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.30.0",
     "next": "13.0.7",
+    "postcss": "^8.4.20",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
+    "storybook": "^6.5.14",
+    "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4"
   }
 }

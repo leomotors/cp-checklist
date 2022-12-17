@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, memo } from "react";
 
 import clsx from "clsx";
 
-interface AlertProps extends PropsWithChildren {
+export interface AlertProps extends PropsWithChildren {
   variant: "success" | "warning" | "error" | "info";
 }
 

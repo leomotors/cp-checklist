@@ -22,15 +22,15 @@
     "@cp-checklist/codegen": "workspace:0.0.0",
     "@cp-checklist/config": "workspace:0.0.0",
     "@cp-checklist/constants": "workspace:0.0.0",
-    "@types/node": "^18.11.15",
+    "@types/node": "^18.11.16",
     "@types/react": "18.0.26",
     "@types/react-datepicker": "^4.8.0",
     "autoprefixer": "^10.4.13",
-    "eslint": "8.29.0",
+    "eslint": "8.30.0",
     "eslint-config-next": "^13.0.7",
     "next-transpile-modules": "10.0.0",
     "postcss": "^8.4.20",
-    "sass": "^1.56.2",
+    "sass": "^1.57.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4"
   }
