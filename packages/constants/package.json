@@ -2,12 +2,19 @@
   "name": "@cp-checklist/constants",
   "version": "0.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "exports": {
+    "import": "./src/index.ts",
+    "require": "./src/index.js"
+  },
+  "types": "src/index.ts",
   "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
     "lint": "eslint src",
     "format": "eslint src --fix"
   },
   "devDependencies": {
-    "@cp-checklist/config": "workspace:0.0.0"
+    "@cp-checklist/config": "workspace:0.0.0",
+    "@cp-checklist/codegen": "workspace:0.0.0"
   }
 }

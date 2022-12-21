@@ -10,10 +10,10 @@ import { PrismaService } from "./prisma.service";
 import { AppController } from "./app.controller";
 
 import { AuthModule } from "./auth/auth.module";
+import { ChecklistModule } from "./checklist/checklist.module";
 import { CourseModule } from "./course/course.module";
 import { SemesterModule } from "./semester/semester.module";
 import { UserModule } from "./user/user.module";
-import { ChecklistModule } from './checklist/checklist.module';
 
 @Global()
 @Module({

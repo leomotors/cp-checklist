@@ -1,0 +1,7 @@
+หมวดวิชาพื้นฐานทางวิศวกรรม
+2100301   การฝึกงานทางวิศวกรรม (Engineering Practice) 2(0-18-0) ประเมินผลเป็น S/U
+2110101    การทำโปรแกรมคอมพิวเตอร์ (Computer Programming) 3(2-2-5)
+2110201    คณิตศาสตร์วิศวกรรมคอมพิวเตอร์ (Computer Engineering Mathematics) 3(3-0-6)
+2110203    คณิตศาสตร์วิศวกรรมคอมพิวเตอร์ 2 (Computer Engineering Mathematics II) 3(3-0-6)
+2110233    การปฏิบัติการทางคณิตศาสตร์วิศวกรรมคอมพิวเตอร์ (Computer Engineering Mathematics Laboratory) 1(0-2-1)
+2110251     ตรรกศาสตร์ของดิจิตอลคอมพิวเตอร์ (Digital Computer Logic) 3(3-0-6)

@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common";
 
 import { User } from "@generated/user/user.model";
 
+import { SaladChecklist } from "@cp-checklist/constants";
+
 import { CourseService } from "src/course/course.service";
 import { PrismaService } from "src/prisma.service";
 
@@ -14,5 +16,7 @@ export class ChecklistService {
 
   async computeChecklist(user: User) {
     const enrolled = new Set(await this.courseService.allMyCourses(user));
+
+    console.log(SaladChecklist);
   }
 }

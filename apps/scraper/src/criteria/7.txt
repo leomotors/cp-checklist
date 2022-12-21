@@ -1,0 +1,6 @@
+วิชาบังคับเลือก
+2110404         ทฤษฏีการคำนวณ (Computational Theory) 3(3-0-6)
+2110415          ระบบที่กำหนดโดยซอฟต์แวร์ (Software-Defined Systems) 3(3-0-6)
+2110446         วิทยาศาสตร์ข้อมูลและวิศวกรรมข้อมูล (Data Science and Data Engineer) 3(3-0-6)
+2110452          สถาปัตยกรรมสมรรถนะสูง (High Performance Architecture) 3(3-0-6)
+2110521          สถาปัตยกรรมซอฟต์แวร์ (Software Architecture) 3(3-0-9)

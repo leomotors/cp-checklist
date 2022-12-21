@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { ApolloProvider } from "@apollo/client";
 
-import { createApolloClient } from "@cp-checklist/codegen";
+import { createApolloClient } from "@cp-checklist/apollo";
 
 import { Renderer } from "$core/renderer";
 import { AuthProvider } from "$modules/authentication";

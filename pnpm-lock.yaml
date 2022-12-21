@@ -67,6 +67,7 @@ importers:
   apps/client:
     specifiers:
       '@apollo/client': ^3.7.2
+      '@cp-checklist/apollo': workspace:0.0.0
       '@cp-checklist/codegen': workspace:0.0.0
       '@cp-checklist/config': workspace:0.0.0
       '@cp-checklist/constants': workspace:0.0.0
@@ -98,6 +99,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
+      '@cp-checklist/apollo': link:../../packages/apollo
       '@cp-checklist/codegen': link:../../packages/codegen
       '@cp-checklist/config': link:../../packages/config
       '@cp-checklist/constants': link:../../packages/constants
@@ -200,11 +202,21 @@ importers:
       typescript: 4.9.4
       webpack: 5.75.0
 
-  packages/codegen:
+  packages/apollo:
     specifiers:
       '@apollo/client': ^3.7.2
       '@cp-checklist/config': workspace:0.0.0
       '@cp-checklist/constants': workspace:0.0.0
+    dependencies:
+      '@apollo/client': 3.7.2_graphql@16.6.0
+    devDependencies:
+      '@cp-checklist/config': link:../config
+      '@cp-checklist/constants': link:../constants
+
+  packages/codegen:
+    specifiers:
+      '@apollo/client': ^3.7.2
+      '@cp-checklist/config': workspace:0.0.0
       '@graphql-codegen/cli': ^2.16.1
       '@graphql-codegen/near-operation-file-preset': ^2.4.4
       '@graphql-codegen/typescript': ^2.8.5
@@ -221,7 +233,6 @@ importers:
       graphql-tag: 2.12.6_graphql@16.6.0
     devDependencies:
       '@cp-checklist/config': link:../config
-      '@cp-checklist/constants': link:../constants
       '@graphql-codegen/cli': 2.16.1_mhvadhhu7bc7ajmk5yu3swbb4a
       '@graphql-codegen/near-operation-file-preset': 2.4.4_graphql@16.6.0
       '@graphql-codegen/typescript': 2.8.5_graphql@16.6.0
@@ -239,8 +250,10 @@ importers:
 
   packages/constants:
     specifiers:
+      '@cp-checklist/codegen': workspace:0.0.0
       '@cp-checklist/config': workspace:0.0.0
     devDependencies:
+      '@cp-checklist/codegen': link:../codegen
       '@cp-checklist/config': link:../config
 
   packages/design:

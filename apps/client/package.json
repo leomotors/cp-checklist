@@ -20,6 +20,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@cp-checklist/apollo": "workspace:0.0.0",
     "@cp-checklist/codegen": "workspace:0.0.0",
     "@cp-checklist/config": "workspace:0.0.0",
     "@cp-checklist/constants": "workspace:0.0.0",

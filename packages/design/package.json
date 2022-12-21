@@ -2,7 +2,7 @@
   "name": "@cp-checklist/design",
   "version": "0.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "lint": "eslint src",
     "format": "eslint src --fix",
