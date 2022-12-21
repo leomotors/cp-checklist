@@ -9,6 +9,6 @@ for (const item of items) {
   const title = lines[0];
   const courses = lines.slice(1).map((l) => l.split(" ")[0]);
 
-  console.log(`title = ${title}`);
-  console.log(`courses = ${courses}}`);
+  console.log(`title = "${title}"`);
+  console.log(`courses = [${courses.map((c) => `"${c}"`).join(", ")}]\n`);
 }
