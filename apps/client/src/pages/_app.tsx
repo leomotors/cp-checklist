@@ -7,7 +7,6 @@ import { createApolloClient } from "@cp-checklist/codegen";
 
 import { Renderer } from "$core/renderer";
 import { AuthProvider } from "$modules/authentication";
-
 import "$styles/global.scss";
 
 const client = createApolloClient(

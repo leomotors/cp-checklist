@@ -1,10 +1,10 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+import { FC, useState } from "react";
 
-import { Modal } from "$core/components";
 import { useCreateSemesterMutation } from "@cp-checklist/codegen";
 import { Button } from "@cp-checklist/design";
-import { FC, useState } from "react";
+
+import { Modal } from "$core/components";
 
 interface CreateSemesterModalProps {
   showModal: boolean;

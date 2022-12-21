@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { useMySemestersQuery } from "@cp-checklist/codegen";
+import { Button } from "@cp-checklist/design";
 
 import { MyPage } from "$core/@types";
 import { CreateSemesterModal, SearchCourse, SemesterCard } from "$modules/home";
-import { Button } from "@cp-checklist/design";
 
 const HomePage: MyPage = () => {
   const { data, refetch } = useMySemestersQuery();
