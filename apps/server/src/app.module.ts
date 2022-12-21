@@ -13,6 +13,7 @@ import { AuthModule } from "./auth/auth.module";
 import { CourseModule } from "./course/course.module";
 import { SemesterModule } from "./semester/semester.module";
 import { UserModule } from "./user/user.module";
+import { ChecklistModule } from './checklist/checklist.module';
 
 @Global()
 @Module({
@@ -30,6 +31,7 @@ import { UserModule } from "./user/user.module";
     CourseModule,
     SemesterModule,
     UserModule,
+    ChecklistModule,
   ],
   controllers: [AppController],
   providers: [PrismaService],
