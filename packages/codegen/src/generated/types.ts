@@ -276,6 +276,7 @@ export type PublicCourse = {
 export type Query = {
   __typename?: 'Query';
   allMyCourses: Array<PublicCourse>;
+  computeChecklist: Scalars['String'];
   courses: Array<Course>;
   me: User;
   mySemesters: Array<Semester>;
