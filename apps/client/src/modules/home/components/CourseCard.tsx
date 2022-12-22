@@ -1,5 +1,11 @@
 import { FC, useMemo, useState } from "react";
-import { BoxArrowUpRight, ChevronDown, Trash } from "react-bootstrap-icons";
+import {
+  BoxArrowUpRight,
+  Check2,
+  ChevronDown,
+  Trash,
+  X,
+} from "react-bootstrap-icons";
 
 import clsx from "clsx";
 
@@ -17,7 +23,8 @@ export interface CourseCardProps {
     | "credit"
     | "genEdType"
   >;
-  onRemove: () => unknown;
+  onRemove?: () => unknown;
+  checklistStatus?: boolean;
 }
 
 function facultyColor(courseNo: string, genEd: GenEdType) {
@@ -28,10 +35,17 @@ function facultyColor(courseNo: string, genEd: GenEdType) {
   return ["bg-blue-400", "bg-blue-300"];
 }
 
-export const CourseCard: FC<CourseCardProps> = ({ course, onRemove }) => {
+export const CourseCard: FC<CourseCardProps> = ({
+  checklistStatus,
+  course,
+  onRemove,
+}) => {
   const [pColor, sColor] = useMemo(
-    () => facultyColor(course.courseNo, course.genEdType),
-    [course.courseNo, course.genEdType]
+    () =>
+      checklistStatus === undefined
+        ? facultyColor(course.courseNo, course.genEdType)
+        : ["bg-white", "bg-neutral-200"],
+    [checklistStatus, course.courseNo, course.genEdType]
   );
   const [expand, setExpand] = useState(false);
 
@@ -77,9 +91,18 @@ export const CourseCard: FC<CourseCardProps> = ({ course, onRemove }) => {
             />
           </button>
 
-          <button onClick={() => onRemove()}>
-            <Trash />
-          </button>
+          {onRemove && (
+            <button onClick={() => onRemove()}>
+              <Trash />
+            </button>
+          )}
+
+          {checklistStatus !== undefined &&
+            (checklistStatus ? (
+              <Check2 className="h-6 w-6 text-green-500" />
+            ) : (
+              <X className="h-8 w-8 text-red-500" />
+            ))}
         </div>
       </div>
 

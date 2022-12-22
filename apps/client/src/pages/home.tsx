@@ -1,14 +1,38 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import { useMySemestersQuery } from "@cp-checklist/codegen";
+import {
+  useComputeChecklistQuery,
+  useMySemestersQuery,
+} from "@cp-checklist/codegen";
+import { ComputedChecklist } from "@cp-checklist/constants";
 import { Button } from "@cp-checklist/design";
 
 import { MyPage } from "$core/@types";
-import { CreateSemesterModal, SearchCourse, SemesterCard } from "$modules/home";
+import {
+  Checklist,
+  CreateSemesterModal,
+  SearchCourse,
+  SemesterCard,
+} from "$modules/home/components";
 
 const HomePage: MyPage = () => {
   const { data, refetch } = useMySemestersQuery();
   const semesters = data?.mySemesters;
+
+  const { data: _checklist, refetch: refetchChecklist } =
+    useComputeChecklistQuery();
+
+  const checklist = useMemo(
+    () =>
+      _checklist &&
+      (JSON.parse(_checklist.computeChecklist) as ComputedChecklist),
+    [_checklist]
+  );
+
+  function onMutate() {
+    refetch();
+    refetchChecklist();
+  }
 
   // #region state
   const [showSearchModal, setShowSearchModal] = useState(false);
@@ -19,6 +43,20 @@ const HomePage: MyPage = () => {
 
   return (
     <main className="flex flex-col items-center justify-center gap-4 p-8">
+      <p className="text-xl font-bold">
+        Credits Granted {checklist?.creditsGranted} / {checklist?.totalCredits}
+      </p>
+
+      <div className="flex max-w-4xl flex-col gap-2">
+        {checklist?.computed.map((category) => (
+          <Checklist
+            key={category.name}
+            computed={category}
+            coursesData={checklist.coursesData}
+          />
+        ))}
+      </div>
+
       <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
         {semesters?.map((semester) => (
           <SemesterCard
@@ -28,7 +66,7 @@ const HomePage: MyPage = () => {
               setFocusSemester(id);
               setShowSearchModal(true);
             }}
-            onMutate={refetch}
+            onMutate={onMutate}
           />
         ))}
       </div>
@@ -43,7 +81,7 @@ const HomePage: MyPage = () => {
         onClose={(mutate) => {
           setShowSearchModal(false);
           setFocusSemester(undefined);
-          mutate && refetch();
+          mutate && onMutate();
         }}
       />
 
@@ -51,7 +89,7 @@ const HomePage: MyPage = () => {
         showModal={showCreateSemesterModal}
         onClose={(mutate) => {
           setShowCreateSemesterModal(false);
-          mutate && refetch();
+          mutate && onMutate();
         }}
       />
     </main>

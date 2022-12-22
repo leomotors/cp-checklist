@@ -38,10 +38,15 @@ export type TopCategory<TCategory = Category> = {
   | TCategory
 );
 
-export type ComputedCategory = Category & { satisfied: string[] };
+export type ComputedCategory = Category & {
+  satisfied: string[];
+  satisfiedCredits: number;
+};
 
 export type Checklist = TopCategory[];
 export type ComputedChecklist = {
   computed: TopCategory<ComputedCategory>[];
   coursesData: Record<string, PublicCourse>;
+  creditsGranted: number;
+  totalCredits: number;
 };

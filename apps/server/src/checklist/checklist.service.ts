@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 
 import { User } from "@generated/user/user.model";
 import { GenEdType } from "@prisma/client";
@@ -9,6 +9,7 @@ import {
   ComputedChecklist,
   SaladChecklist,
 } from "@cp-checklist/constants";
+import { PublicCourse } from "@cp-checklist/constants/src/salad/mirror";
 
 import { CourseService } from "src/course/course.service";
 import { PrismaService } from "src/prisma.service";
@@ -46,15 +47,17 @@ export class ChecklistService {
     switch (c.condition) {
       case "all": {
         const satisfied: string[] = [];
+        let satisfiedCredits = 0;
 
         for (const req of c.courseIds) {
           if (enrolled.has(req)) {
             satisfied.push(req);
             enrolled.delete(req);
+            satisfiedCredits += courses[req].credit;
           }
         }
 
-        return { ...c, satisfied };
+        return { ...c, satisfied, satisfiedCredits };
       }
 
       case "pick": {
@@ -73,7 +76,7 @@ export class ChecklistService {
           }
         }
 
-        return { ...c, satisfied };
+        return { ...c, satisfied, satisfiedCredits };
       }
 
       case "gened": {
@@ -81,7 +84,10 @@ export class ChecklistService {
         let satisfiedCredits = 0;
 
         for (const course of enrolled) {
-          if (courses[course].genEdType === c.parameter) {
+          if (
+            courses[course].genEdType === c.parameter &&
+            !course.startsWith("21")
+          ) {
             satisfied.push(course);
             enrolled.delete(course);
 
@@ -93,7 +99,7 @@ export class ChecklistService {
           }
         }
 
-        return { ...c, satisfied };
+        return { ...c, satisfied, satisfiedCredits };
       }
 
       case "credits": {
@@ -111,7 +117,7 @@ export class ChecklistService {
           }
         }
 
-        return { ...c, satisfied };
+        return { ...c, satisfied, satisfiedCredits };
       }
     }
   }
@@ -120,13 +126,10 @@ export class ChecklistService {
     const enrolled = new Set(
       (await this.courseService.allMyCourses(user)).map((c) => c.courseNo)
     );
-    const dataRequired = new Set(...enrolled);
+    const dataRequired = new Set(enrolled);
 
     const saladChecklist = structuredClone(SaladChecklist);
-
-    await this.courses;
-
-    const result: ComputedChecklist = { computed: [], coursesData: {} };
+    const result: Pick<ComputedChecklist, "computed"> = { computed: [] };
 
     for (const category of saladChecklist) {
       if ("categories" in category && category.categories) {
@@ -142,31 +145,46 @@ export class ChecklistService {
       }
     }
 
-    for (const category of result.computed) {
-      if ("categories" in category && category.categories) {
-        for (const subcate of category.categories) {
-          subcate.satisfied.forEach((c) => dataRequired.add(c));
-        }
-      } else {
-        if ("satisfied" in category) {
-          category.satisfied.forEach((c) => dataRequired.add(c));
-        } else {
-          throw new InternalServerErrorException("umm typescript is right?");
-        }
+    const courses = await this.courses;
+
+    let creditsGranted = 0;
+
+    function addCategory(category: ComputedCategory) {
+      category.satisfied.forEach((c) => {
+        dataRequired.add(c);
+        creditsGranted += courses[c].credit;
+      });
+
+      if (category.condition === "all") {
+        category.courseIds.forEach((c) => dataRequired.add(c));
       }
     }
 
-    const coursesData = await this.prisma.course.findMany({
-      where: {
-        courseNo: {
-          in: [...dataRequired],
+    for (const category of result.computed) {
+      if ("categories" in category && category.categories) {
+        for (const subcate of category.categories) {
+          addCategory(subcate);
+        }
+      } else {
+        addCategory(category as ComputedCategory);
+      }
+    }
+
+    const coursesData = (
+      await this.prisma.course.findMany({
+        where: {
+          courseNo: {
+            in: [...dataRequired],
+          },
         },
-      },
-    });
+      })
+    ).reduce((prev, curr) => ({ ...prev, [curr.courseNo]: curr }), {});
 
     return JSON.stringify({
       computed: result.computed,
-      coursesData,
-    });
+      coursesData: coursesData satisfies Record<string, PublicCourse>,
+      creditsGranted,
+      totalCredits: 139,
+    } satisfies ComputedChecklist);
   }
 }
