@@ -16,19 +16,19 @@
     "storybook": "pnpm --filter=\"@cp-checklist/design\" storybook"
   },
   "dependencies": {
-    "@prisma/client": "^4.7.1"
+    "@prisma/client": "^4.8.0"
   },
   "devDependencies": {
     "@leomotors/config": "^0.9.0",
     "@leomotors/prisma-nestjs-graphql": "^18.0.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@nestjs/cli": "^9.1.5",
-    "@storybook/react": "^6.5.14",
+    "@storybook/react": "^6.5.15",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/eslint": "^8.4.10",
-    "@types/node": "^18.11.16",
-    "@types/prettier": "^2.7.1",
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
+    "@types/node": "^18.11.17",
+    "@types/prettier": "^2.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
     "crlf-phobia": "^1.0.1",
     "eslint": "^8.30.0",
     "eslint-config-next": "^13.0.7",
@@ -41,7 +41,7 @@
     "eslint-plugin-sort-destructure-keys": "^1.4.0",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
-    "prisma": "^4.7.1",
+    "prisma": "^4.8.0",
     "react-bootstrap-icons": "^1.10.2",
     "turbo": "^1.6.3",
     "typescript": "^4.9.4"

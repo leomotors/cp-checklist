@@ -21,7 +21,7 @@
     "prettier": "^2.8.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.2",
+    "@apollo/client": "^3.7.3",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6"
   }
