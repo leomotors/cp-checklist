@@ -10,42 +10,6 @@ type CourseCount {
   semesters: Int!
 }
 
-type UserCount {
-  semesters: Int!
-}
-
-type User {
-  id: ID!
-  username: String!
-  password: String!
-  semesters: [Semester!]!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  _count: UserCount!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type SemesterCount {
-  courses: Int!
-}
-
-type Semester {
-  id: ID!
-  year: Int!
-  semester: Int!
-  user: User!
-  userId: String!
-  courses: [Course!]!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  _count: SemesterCount!
-  totalCredits: Float!
-}
-
 type Course {
   courseNo: ID!
   abbrName: String!
@@ -71,6 +35,42 @@ enum GenEdType {
   NO
 }
 
+type SemesterCount {
+  courses: Int!
+}
+
+type Semester {
+  id: ID!
+  year: Int!
+  semester: Int!
+  user: User!
+  userId: String!
+  courses: [Course!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: SemesterCount!
+  totalCredits: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type UserCount {
+  semesters: Int!
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  semesters: [Semester!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: UserCount!
+}
+
 type PublicCourse {
   courseNo: ID!
   abbrName: String!
@@ -93,6 +93,7 @@ type Query {
   mySemesters: [Semester!]!
   users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
   me: User!
+  computeChecklist: String!
 }
 
 input CourseWhereInput {

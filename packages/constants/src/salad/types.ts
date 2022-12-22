@@ -1,4 +1,4 @@
-import { GenEdType } from "./mirror";
+import { GenEdType, PublicCourse } from "./mirror";
 
 export type Category = {
   name: string;
@@ -17,14 +17,14 @@ export type Category = {
       parameter?: never;
     }
   | {
-      /** Learn any courses until credits satisfies totalCredits */
-      condition: "credits";
-      parameter?: never;
-    }
-  | {
       /** Learn gened courses in parameter until credits satisfies totalCredits */
       condition: "gened";
       parameter: GenEdType;
+    }
+  | {
+      /** Learn any courses until credits satisfies totalCredits */
+      condition: "credits";
+      parameter?: never;
     }
 );
 
@@ -41,4 +41,7 @@ export type TopCategory<TCategory = Category> = {
 export type ComputedCategory = Category & { satisfied: string[] };
 
 export type Checklist = TopCategory[];
-export type ComputedChecklist = TopCategory<ComputedCategory>[];
+export type ComputedChecklist = {
+  computed: TopCategory<ComputedCategory>[];
+  coursesData: Record<string, PublicCourse>;
+};

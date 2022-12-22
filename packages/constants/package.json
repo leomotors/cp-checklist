@@ -4,7 +4,7 @@
   "private": true,
   "exports": {
     "import": "./src/index.ts",
-    "require": "./src/index.js"
+    "require": "./dist/index.js"
   },
   "types": "src/index.ts",
   "scripts": {

@@ -6,3 +6,18 @@ export enum GenEdType {
   Sc = "SC",
   So = "SO",
 }
+
+export type PublicCourse = {
+  courseNo: string;
+  abbrName: string;
+  courseNameEn: string;
+  courseNameTh: string;
+  courseDescEn?: string | null;
+  courseDescTh?: string | null;
+  courseCondition: string;
+  credit: number;
+  creditHours: string;
+  department: string;
+  faculty: string;
+  genEdType: GenEdType;
+};
