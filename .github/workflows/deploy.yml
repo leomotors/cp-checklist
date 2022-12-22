@@ -1,0 +1,47 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  image:
+    name: Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup node with cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: Write env
+        run: |
+          echo ADMIN_SECRET="${{ secrets.ADMIN_SECRET }}" >> .env
+          echo DATABASE_URL="${{ secrets.DATABASE_URL }}" >> .env
+          echo NEXT_PUBLIC_GRAPHQL_ENDPOINT="${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}" >> apps/client/.env
+
+      - name: Login via Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build and push image
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - run: |
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/cp-checklist
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/cp-checklist

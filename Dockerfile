@@ -8,29 +8,14 @@ RUN npm i --location=global pnpm
 WORKDIR /turbo
 
 COPY package.json turbo.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
-
-COPY apps/server ./apps/server
-
-# Copy DevDependencies
+COPY .gitignore .env ./
+COPY apps ./apps
 COPY packages ./packages
 COPY prisma ./prisma
 
-RUN pnpm install
-RUN pnpm build:server
+RUN pnpm install --frozen-lockfile
+RUN pnpm build
 
-FROM node:18-alpine
+EXPOSE 5110 5111
 
-WORKDIR /app
-
-RUN npm i --location=global pnpm
-
-COPY --from=builder /turbo/node_modules ./node_modules
-COPY --from=builder /turbo/apps/server ./apps/server
-COPY --from=builder /turbo/pnpm-workspace.yaml ./
-COPY --from=builder /turbo/package.json ./
-COPY --from=builder /turbo/turbo.json ./
-COPY --from=builder /turbo/.env ./
-
-EXPOSE 5111
-
-CMD ["pnpm", "start:server"]
+CMD ["pnpm", "start"]

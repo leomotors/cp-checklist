@@ -12,6 +12,7 @@
     "start:client": "FORCE_COLOR=2 pnpm --filter=\"@cp-checklist/client\" start",
     "build:server": "FORCE_COLOR=2 pnpm turbo run --filter=\"@cp-checklist/server\" build",
     "start:server": "FORCE_COLOR=2 pnpm --filter=\"@cp-checklist/server\" start",
+    "start": "FORCE_COLOR=2 pnpm turbo run start",
     "scraper": "pnpm --filter=\"@cp-checklist/scraper\" run run",
     "storybook": "pnpm --filter=\"@cp-checklist/design\" storybook"
   },
