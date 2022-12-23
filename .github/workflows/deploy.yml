@@ -57,3 +57,4 @@ jobs:
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: cp-checklist
           location: "southeast asia"
+          ports: "5110 5111"
