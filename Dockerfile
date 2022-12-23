@@ -5,7 +5,7 @@ RUN apk update
 
 RUN npm i --location=global pnpm
 
-WORKDIR /turbo
+WORKDIR /salad
 
 COPY package.json turbo.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 COPY .gitignore .env ./
