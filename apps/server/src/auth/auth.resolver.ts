@@ -5,11 +5,11 @@ import { AuthorizationToken, LoginRegisterArgs } from "./auth.dto";
 import { AuthService } from "./auth.service";
 
 @Resolver()
+@Permission("Public")
 export class AuthResolver {
   constructor(private readonly service: AuthService) {}
 
   @Mutation(() => AuthorizationToken)
-  @Permission("Public")
   login(@Args() args: LoginRegisterArgs) {
     return this.service.login(args);
   }

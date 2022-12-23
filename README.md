@@ -8,7 +8,8 @@ Are you ready to graduate checklist for CP 🥗
 - Set all .env (see .env.template)
 - Run `pnpm scraper pull` and `pnpm scraper push`
 
-## Creating account
+## TODO
 
-Register function currently only available for admin, to get admin power.
-You need to issue your own JWT with your set secret.
+- Better error handling
+- Better UI
+- Landing Page with photo?

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useLoginMutation } from "@cp-checklist/codegen";
+import { useLoginMutation, useRegisterMutation } from "@cp-checklist/codegen";
 import { Alert, Button, Input } from "@cp-checklist/design";
 
 import { MyPage } from "$core/@types";
@@ -13,6 +13,7 @@ const LoginPage: MyPage = () => {
   const [error, setError] = useState("");
 
   const [login] = useLoginMutation();
+  const [register] = useRegisterMutation();
 
   const { setToken } = useUser();
 
@@ -26,6 +27,25 @@ const LoginPage: MyPage = () => {
       });
 
       const token = data?.login.token;
+
+      if (token) {
+        setToken(token);
+      }
+    } catch (err) {
+      setError(apolloError(err));
+    }
+  }
+
+  async function handleRegister() {
+    try {
+      const { data } = await register({
+        variables: {
+          username,
+          password,
+        },
+      });
+
+      const token = data?.register.token;
 
       if (token) {
         setToken(token);
@@ -61,7 +81,10 @@ const LoginPage: MyPage = () => {
         />
       </form>
 
-      <Button onClick={attemptLogin}>Submit</Button>
+      <div className="flex gap-2">
+        <Button onClick={attemptLogin}>Login</Button>
+        <Button onClick={handleRegister}>Register</Button>
+      </div>
     </main>
   );
 };

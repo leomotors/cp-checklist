@@ -3,3 +3,9 @@ mutation Login($username: String!, $password: String!) {
     token
   }
 }
+
+mutation Register($username: String!, $password: String!) {
+  register(username: $username, password: $password) {
+    token
+  }
+}
