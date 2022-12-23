@@ -10,4 +10,10 @@ export class AppController {
   get() {
     return;
   }
+
+  @Get("/cunny")
+  @Redirect("https://www.youtube.com/watch?v=NOZONW-UK0w&t=26s")
+  cunny() {
+    return;
+  }
 }
