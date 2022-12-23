@@ -4,6 +4,10 @@ on:
   push:
     branches: ["main"]
 
+concurrency:
+  group: deploy-production-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   image:
     name: Docker Image
@@ -45,3 +49,22 @@ jobs:
       - run: |
           docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/cp-checklist:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/cp-checklist:latest
+
+  ssh:
+    name: SSH and restart docker
+    runs-on: ubuntu-latest
+    needs: [image]
+
+    steps:
+      - name: SSH and restart docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: leomotors
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            cd cp-checklist
+            docker compose pull
+            docker compose down
+            docker compose up
