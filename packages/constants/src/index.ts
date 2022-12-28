@@ -1,4 +1,4 @@
-export { authorizationLocalStorageKey } from "./constants";
+export { authorizationLocalStorageKey, GitHubLink } from "./constants";
 export type { IAuthJwt } from "./types";
 
 export { SaladChecklist } from "./salad/salad";
