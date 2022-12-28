@@ -110,7 +110,7 @@ export const CourseCard: FC<CourseCardProps> = ({
         className={clsx(
           "w-full rounded-b-lg transition-transform",
           sColor,
-          expand ? "p-2" : "h-0 -translate-y-4 opacity-0"
+          expand ? "p-2" : "pointer-events-none h-0 -translate-y-4 opacity-0"
         )}
       >
         <p>{course.courseDescEn}</p>
