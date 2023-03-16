@@ -8,7 +8,7 @@ RUN npm i --location=global pnpm
 WORKDIR /salad
 
 COPY package.json turbo.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
-COPY .gitignore .env ./
+COPY .gitignore ./
 COPY apps ./apps
 COPY packages ./packages
 COPY prisma ./prisma
