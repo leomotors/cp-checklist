@@ -15,12 +15,12 @@ export class SemesterCreateWithoutUserInput {
     @Field(() => Int, {nullable:false})
     semester!: number;
 
-    @Field(() => CourseCreateNestedManyWithoutSemestersInput, {nullable:true})
-    courses?: CourseCreateNestedManyWithoutSemestersInput;
-
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
+
+    @Field(() => CourseCreateNestedManyWithoutSemestersInput, {nullable:true})
+    courses?: CourseCreateNestedManyWithoutSemestersInput;
 }

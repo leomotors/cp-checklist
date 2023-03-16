@@ -3,7 +3,7 @@ import { Global, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 
-import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 
 import { PrismaService } from "./prisma.service";
 

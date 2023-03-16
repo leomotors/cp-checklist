@@ -10,12 +10,12 @@
     "format": "eslint src --fix"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.3",
+    "@apollo/client": "^3.7.10",
     "@cp-checklist/design": "workspace:0.0.0",
     "clsx": "^1.2.1",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
-    "next": "13.1.1",
+    "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -25,15 +25,15 @@
     "@cp-checklist/config": "workspace:0.0.0",
     "@cp-checklist/constants": "workspace:0.0.0",
     "@types/lodash": "^4.14.191",
-    "@types/node": "^18.11.18",
-    "@types/react": "18.0.26",
-    "autoprefixer": "^10.4.13",
-    "eslint": "8.30.0",
-    "eslint-config-next": "^13.1.1",
+    "@types/node": "^18.15.3",
+    "@types/react": "18.0.28",
+    "autoprefixer": "^10.4.14",
+    "eslint": "8.36.0",
+    "eslint-config-next": "^13.2.4",
     "next-transpile-modules": "10.0.0",
-    "postcss": "^8.4.20",
-    "sass": "^1.57.1",
-    "tailwindcss": "^3.2.4",
-    "typescript": "^4.9.4"
+    "postcss": "^8.4.21",
+    "sass": "^1.59.3",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.5"
   }
 }

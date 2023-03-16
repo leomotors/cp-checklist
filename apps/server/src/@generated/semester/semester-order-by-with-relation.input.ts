@@ -16,18 +16,18 @@ export class SemesterOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     semester?: keyof typeof SortOrder;
 
-    @Field(() => UserOrderByWithRelationInput, {nullable:true})
-    user?: UserOrderByWithRelationInput;
-
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-
-    @Field(() => CourseOrderByRelationAggregateInput, {nullable:true})
-    courses?: CourseOrderByRelationAggregateInput;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updatedAt?: keyof typeof SortOrder;
+
+    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    user?: UserOrderByWithRelationInput;
+
+    @Field(() => CourseOrderByRelationAggregateInput, {nullable:true})
+    courses?: CourseOrderByRelationAggregateInput;
 }

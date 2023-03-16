@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
-import { SemesterListRelationFilter } from '../semester/semester-list-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { SemesterListRelationFilter } from '../semester/semester-list-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -25,12 +25,12 @@ export class UserWhereInput {
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;
 
-    @Field(() => SemesterListRelationFilter, {nullable:true})
-    semesters?: SemesterListRelationFilter;
-
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     updatedAt?: DateTimeFilter;
+
+    @Field(() => SemesterListRelationFilter, {nullable:true})
+    semesters?: SemesterListRelationFilter;
 }

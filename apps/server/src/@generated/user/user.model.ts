@@ -16,14 +16,14 @@ export class User {
     @Field(() => String, {nullable:false})
     password!: string;
 
-    @Field(() => [Semester], {nullable:false})
-    semesters?: Array<Semester>;
-
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
 
     @Field(() => Date, {nullable:false})
     updatedAt!: Date;
+
+    @Field(() => [Semester], {nullable:false})
+    semesters?: Array<Semester>;
 
     @Field(() => UserCount, {nullable:false})
     _count?: UserCount;

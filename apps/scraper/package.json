@@ -11,8 +11,8 @@
   "devDependencies": {
     "@cp-checklist/config": "workspace:0.0.0",
     "@types/cli-progress": "^3.11.0",
-    "@types/node": "^18.11.18",
-    "cli-progress": "^3.11.2",
-    "tsx": "^3.12.1"
+    "@types/node": "^18.15.3",
+    "cli-progress": "^3.12.0",
+    "tsx": "^3.12.5"
   }
 }

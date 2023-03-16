@@ -12,6 +12,6 @@
     "@cp-checklist/constants": "workspace:0.0.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.3"
+    "@apollo/client": "^3.7.10"
   }
 }

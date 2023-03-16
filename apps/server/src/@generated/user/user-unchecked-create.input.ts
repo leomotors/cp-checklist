@@ -14,12 +14,12 @@ export class UserUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     password!: string;
 
-    @Field(() => SemesterUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
-    semesters?: SemesterUncheckedCreateNestedManyWithoutUserInput;
-
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
+
+    @Field(() => SemesterUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    semesters?: SemesterUncheckedCreateNestedManyWithoutUserInput;
 }

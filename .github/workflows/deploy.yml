@@ -28,12 +28,6 @@ jobs:
           node-version: 18
           cache: pnpm
 
-      - name: Write env
-        run: |
-          echo JWT_SECRET="${{ secrets.JWT_SECRET }}" >> .env
-          echo DATABASE_URL="${{ secrets.DATABASE_URL }}" >> .env
-          echo NEXT_PUBLIC_GRAPHQL_ENDPOINT="${{ secrets.NEXT_PUBLIC_GRAPHQL_ENDPOINT }}" >> apps/client/.env
-
       - name: Login via Azure CLI
         uses: azure/login@v1
         with:

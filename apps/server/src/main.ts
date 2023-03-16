@@ -12,6 +12,7 @@ async function bootstrap() {
       forbidUnknownValues: false,
     })
   );
+  app.enableCors();
 
   await app.listen(PORT);
   console.log(

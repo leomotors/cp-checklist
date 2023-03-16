@@ -18,12 +18,12 @@ export class SemesterUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     userId!: string;
 
-    @Field(() => CourseUncheckedCreateNestedManyWithoutSemestersInput, {nullable:true})
-    courses?: CourseUncheckedCreateNestedManyWithoutSemestersInput;
-
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
+
+    @Field(() => CourseUncheckedCreateNestedManyWithoutSemestersInput, {nullable:true})
+    courses?: CourseUncheckedCreateNestedManyWithoutSemestersInput;
 }

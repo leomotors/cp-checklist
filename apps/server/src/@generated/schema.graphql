@@ -43,11 +43,11 @@ type Semester {
   id: ID!
   year: Int!
   semester: Int!
-  user: User!
   userId: String!
-  courses: [Course!]!
   createdAt: DateTime!
   updatedAt: DateTime!
+  user: User!
+  courses: [Course!]!
   _count: SemesterCount!
   totalCredits: Float!
 }
@@ -65,9 +65,9 @@ type User {
   id: ID!
   username: String!
   password: String!
-  semesters: [Semester!]!
   createdAt: DateTime!
   updatedAt: DateTime!
+  semesters: [Semester!]!
   _count: UserCount!
 }
 
@@ -227,11 +227,11 @@ input SemesterWhereInput {
   id: StringFilter
   year: IntFilter
   semester: IntFilter
-  user: UserRelationFilter
   userId: StringFilter
-  courses: CourseListRelationFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  courses: CourseListRelationFilter
 }
 
 input IntFilter {
@@ -256,23 +256,6 @@ input NestedIntFilter {
   not: NestedIntFilter
 }
 
-input UserRelationFilter {
-  is: UserWhereInput
-  isNot: UserWhereInput
-}
-
-input UserWhereInput {
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  id: StringFilter
-  username: StringFilter
-  password: StringFilter
-  semesters: SemesterListRelationFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-}
-
 input DateTimeFilter {
   equals: DateTime
   in: [DateTime!]
@@ -293,6 +276,23 @@ input NestedDateTimeFilter {
   gt: DateTime
   gte: DateTime
   not: NestedDateTimeFilter
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  username: StringFilter
+  password: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  semesters: SemesterListRelationFilter
 }
 
 input CourseListRelationFilter {
@@ -349,9 +349,9 @@ input UserOrderByWithRelationInput {
   id: SortOrder
   username: SortOrder
   password: SortOrder
-  semesters: SemesterOrderByRelationAggregateInput
   createdAt: SortOrder
   updatedAt: SortOrder
+  semesters: SemesterOrderByRelationAggregateInput
 }
 
 input UserWhereUniqueInput {

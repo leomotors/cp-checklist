@@ -18,20 +18,20 @@ export class Semester {
     @Field(() => Int, {nullable:false})
     semester!: number;
 
-    @Field(() => User, {nullable:false})
-    user?: User;
-
     @Field(() => String, {nullable:false})
     userId!: string;
-
-    @Field(() => [Course], {nullable:false})
-    courses?: Array<Course>;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
 
     @Field(() => Date, {nullable:false})
     updatedAt!: Date;
+
+    @Field(() => User, {nullable:false})
+    user?: User;
+
+    @Field(() => [Course], {nullable:false})
+    courses?: Array<Course>;
 
     @Field(() => SemesterCount, {nullable:false})
     _count?: SemesterCount;
