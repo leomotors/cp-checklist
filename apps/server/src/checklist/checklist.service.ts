@@ -184,7 +184,7 @@ export class ChecklistService {
       computed: result.computed,
       coursesData: coursesData satisfies Record<string, PublicCourse>,
       creditsGranted,
-      totalCredits: 139,
+      totalCredits: 141,
     } satisfies ComputedChecklist);
   }
 }

@@ -16,9 +16,6 @@ COPY prisma ./prisma
 RUN pnpm install --frozen-lockfile
 RUN pnpm build
 
-# test cache hit
-RUN pnpm build
-
 EXPOSE 5110 5111
 
 CMD ["pnpm", "start"]
