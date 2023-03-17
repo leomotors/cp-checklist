@@ -13,6 +13,8 @@ COPY apps ./apps
 COPY packages ./packages
 COPY prisma ./prisma
 
+ENV NEXT_PUBLIC_GRAPHQL_ENDPOINT=https://api-cp-checklist.leomotors.me/graphql
+
 RUN pnpm install --frozen-lockfile
 RUN pnpm build
 
