@@ -37,3 +37,7 @@ yarn-error.log*
 dist
 build
 out
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
