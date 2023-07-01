@@ -102,7 +102,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between gap-8 p-24">
       <h1 className="text-3xl font-bold">CP Analysis 🥗</h1>
 
-      <p className="text-xl">Last Updated = 2566/1</p>
+      <p className="text-xl">Last Updated = 2566/1 (๑ กรกฎาคม ๒๕๖๖)</p>
 
       <section className="text-lg">
         <p>Red Background = วิชาเปิดล่าสุด &lt; 2564 (ded course)</p>
