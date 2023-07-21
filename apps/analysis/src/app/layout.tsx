@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "CP Analysis",
-  description: "CP electives analysis",
+  description: "Chula electives and gened analysis for CP",
 } satisfies Metadata;
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -53,7 +53,7 @@ export const Cards: FC<CardsProps> = ({
         storageKey={storageKey}
         title={<h1 className="text-3xl font-bold">{title}</h1>}
       >
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 lg:flex-row">
           {Object.entries(groups).map(
             ([semester, courses], index) =>
               (isGenEd && semester === "3") || (
@@ -62,7 +62,7 @@ export const Cards: FC<CardsProps> = ({
                   className={clsx(
                     "flex flex-col gap-4 rounded-lg p-4",
                     semester === "summer" ? "bg-red-300" : "bg-pink-300",
-                    isGenEd ? "w-1/4" : "w-1/5"
+                    isGenEd ? "lg:w-1/4" : "lg:w-1/5"
                   )}
                 >
                   <h2 className="text-2xl font-bold">{groupTitle[index]}</h2>
@@ -101,6 +101,8 @@ export const Cards: FC<CardsProps> = ({
                       </a>
                     );
                   })}
+
+                  {courses.length === 0 && <p>No course</p>}
                 </div>
               )
           )}
