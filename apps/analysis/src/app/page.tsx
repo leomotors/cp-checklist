@@ -1,4 +1,4 @@
-import { PrismaClient, RawCourse } from "@prisma/client";
+import { GenEdType, PrismaClient, RawCourse } from "@prisma/client";
 
 import { SaladChecklist } from "@cp-checklist/constants";
 
@@ -41,6 +41,30 @@ function getCourseProperties(courses: RawCourse[]) {
   };
 }
 
+function buildMap(courseIds: string[], courses: RawCourse[]) {
+  const builtMap = {} as CourseMap;
+
+  for (const courseId of courseIds) {
+    const search = courses.filter((course) => course.courseNo === courseId);
+
+    const latest = search[search.length - 1];
+
+    const props = getCourseProperties(search);
+    builtMap[courseId] = {
+      ...props,
+      courseNameEn: latest?.courseNameEn,
+      courseNameTh: latest?.courseNameTh,
+      abbrName: latest?.abbrName,
+    };
+  }
+
+  return builtMap;
+}
+
+function unique<T>(arr: T[]) {
+  return [...new Set(arr)];
+}
+
 async function getData() {
   const courses = await prisma.rawCourse.findMany({
     where: {
@@ -58,51 +82,72 @@ async function getData() {
     ],
   });
 
-  const requiredMap = {} as CourseMap;
-  const approvedMap = {} as CourseMap;
+  const requiredMap = buildMap(required, courses);
+  const approvedMap = buildMap(approved, courses);
 
-  for (const require of required) {
-    const search = courses.filter((course) => course.courseNo === require);
+  const genEds = await prisma.rawCourse.findMany({
+    where: {
+      genEdType: {
+        not: GenEdType.NO,
+      },
+    },
+    orderBy: [
+      {
+        academicYear: "asc",
+      },
+      {
+        semester: "asc",
+      },
+    ],
+  });
 
-    const latest = search[search.length - 1];
+  const genEdSc = buildMap(
+    unique(genEds.filter((genEd) => genEd.genEdType === GenEdType.SC))
+      .map((genEd) => genEd.courseNo)
+      .filter((id) => id !== "2100111" && !id.startsWith("2110")),
+    genEds
+  );
 
-    const props = getCourseProperties(search);
-    requiredMap[require] = {
-      ...props,
-      courseNameEn: latest?.courseNameEn,
-      courseNameTh: latest?.courseNameTh,
-      abbrName: latest?.abbrName,
-    };
-  }
+  const genEdSo = buildMap(
+    unique(genEds.filter((genEd) => genEd.genEdType === GenEdType.SO)).map(
+      (genEd) => genEd.courseNo
+    ),
+    genEds
+  );
 
-  for (const approve of approved) {
-    const search = courses.filter((course) => course.courseNo === approve);
+  const genEdHu = buildMap(
+    unique(genEds.filter((genEd) => genEd.genEdType === GenEdType.HU)).map(
+      (genEd) => genEd.courseNo
+    ),
+    genEds
+  );
 
-    const latest = search[search.length - 1];
-
-    const props = getCourseProperties(search);
-    approvedMap[approve] = {
-      ...props,
-      courseNameEn: latest?.courseNameEn,
-      courseNameTh: latest?.courseNameTh,
-      abbrName: latest?.abbrName,
-    };
-  }
+  const genEdIn = buildMap(
+    unique(genEds.filter((genEd) => genEd.genEdType === GenEdType.IN)).map(
+      (genEd) => genEd.courseNo
+    ),
+    genEds
+  );
 
   return {
     required: requiredMap,
     approved: approvedMap,
+    genEdSc,
+    genEdSo,
+    genEdHu,
+    genEdIn,
   };
 }
 
 export default async function Home() {
-  const { approved, required } = await getData();
+  const { approved, genEdHu, genEdIn, genEdSc, genEdSo, required } =
+    await getData();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between gap-8 p-24">
       <h1 className="text-3xl font-bold">CP Analysis 🥗</h1>
 
-      <p className="text-xl">Last Updated = 2566/1 (๑ กรกฎาคม ๒๕๖๖)</p>
+      <p className="text-xl">Last Updated = 2566/1 (๒๑ กรกฎาคม ๒๕๖๖)</p>
 
       <section className="text-lg">
         <p>Red Background = วิชาเปิดล่าสุด &lt; 2564 (ded course)</p>
@@ -125,13 +170,20 @@ export default async function Home() {
 
       <Cards
         courses={required}
+        storageKey="required"
         title="Required Electives (Pick 2 or 6 Credits)"
       />
 
       <Cards
         courses={approved}
+        storageKey="approved"
         title="Approved Electives (Pick 6 or 18 Credits)"
       />
+
+      <Cards courses={genEdSc} isGenEd storageKey="sc" title="GenEd (วิทย์)" />
+      <Cards courses={genEdSo} isGenEd storageKey="so" title="GenEd (สังคม)" />
+      <Cards courses={genEdHu} isGenEd storageKey="hu" title="GenEd (มนุษย์)" />
+      <Cards courses={genEdIn} isGenEd storageKey="in" title="GenEd (สหฯ)" />
     </main>
   );
 }
