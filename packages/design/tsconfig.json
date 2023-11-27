@@ -1,9 +1,0 @@
-{
-  "extends": "@cp-checklist/config/tsconfig-react-lib.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "../../apps/client/src/modules/course/components/CourseCard.tsx"
-  ],
-  "exclude": ["dist", "build", "node_modules"]
-}

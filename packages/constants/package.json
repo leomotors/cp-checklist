@@ -14,7 +14,6 @@
     "format": "eslint src --fix"
   },
   "devDependencies": {
-    "@cp-checklist/config": "workspace:0.0.0",
-    "@cp-checklist/codegen": "workspace:0.0.0"
+    "@cp-checklist/config": "workspace:0.0.0"
   }
 }

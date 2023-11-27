@@ -25,6 +25,7 @@ const QUERY = /* GraphQL */ `
 `;
 
 for (const matrix of [
+  ["2566", "3"],
   ["2566", "2"],
   ["2566", "1"],
   ["2565", "3"],
@@ -36,7 +37,7 @@ for (const matrix of [
 ]) {
   const start = performance.now();
 
-  const response = await fetch("https://beta.cugetreg.com/_api/graphql", {
+  const response = await fetch("https://cugetreg.com/_api/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

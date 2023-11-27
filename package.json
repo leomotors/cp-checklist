@@ -17,39 +17,35 @@
     "storybook": "pnpm --filter=\"@cp-checklist/design\" storybook"
   },
   "dependencies": {
-    "@prisma/client": "^4.16.2"
+    "@prisma/client": "^5.6.0"
   },
   "devDependencies": {
-    "@leomotors/config": "^0.10.0",
-    "@leomotors/prisma-nestjs-graphql": "^18.0.0",
-    "@nestjs/cli": "^9.5.0",
-    "@storybook/react": "^6.5.16",
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/eslint": "^8.40.2",
-    "@types/node": "^18.16.19",
-    "@types/prettier": "^2.7.3",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
+    "@leomotors/config": "^0.11.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
     "crlf-phobia": "^1.2.0",
-    "eslint": "^8.44.0",
-    "eslint-config-next": "^13.4.7",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint": "^8.54.0",
+    "eslint-config-next": "^14.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0",
-    "prisma": "^4.16.2",
+    "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "prisma": "^5.6.0",
     "react-bootstrap-icons": "^1.10.3",
-    "turbo": "^1.10.7",
-    "typescript": "^5.1.6"
+    "turbo": "^1.10.16",
+    "typescript": "^5.3.2"
   },
   "engines": {
-    "node": "^18.12.0",
+    "node": "^20.9.0",
     "pnpm": "^8"
   },
-  "packageManager": "pnpm@8.6.5"
+  "packageManager": "pnpm@8.11.0"
 }
