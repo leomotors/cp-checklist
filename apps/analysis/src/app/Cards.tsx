@@ -67,20 +67,13 @@ export const Cards: FC<CardsProps> = ({
                 >
                   <h2 className="text-2xl font-bold">{groupTitle[index]}</h2>
 
-                  {courses.map((course) => {
+                  {courses.sort((a, b) => +a.courseNo - +b.courseNo).map((course) => {
                     const lastYear = +course.term.split("%2F")[0];
 
                     let bgColor = "";
 
-                    if (isNaN(lastYear) || lastYear <= 2564) {
+                    if (isNaN(lastYear) || lastYear <= 2566) {
                       bgColor = "bg-red-500";
-                    } else if (lastYear <= 2565) {
-                      bgColor = "bg-orange-400";
-                    } else if (
-                      [Semester.BOTH, Semester.SECOND].includes(+semester) &&
-                      !course.term.endsWith("2")
-                    ) {
-                      bgColor = "bg-yellow-400";
                     }
 
                     return (

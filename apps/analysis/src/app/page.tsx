@@ -35,7 +35,9 @@ function getCourseProperties(courses: RawCourse[]) {
         ? Semester.BOTH
         : hasFirst
         ? Semester.FIRST
-        : Semester.SECOND,
+        : hasSecond 
+        ? Semester.SECOND
+        : Semester.NONE,
     summer: hasSummer,
     term: `${latest.academicYear}%2F${latest.semester}`,
   };
@@ -56,6 +58,10 @@ function buildMap(courseIds: string[], courses: RawCourse[]) {
       courseNameTh: latest?.courseNameTh,
       abbrName: latest?.abbrName,
     };
+
+    if (courseId == "2110392") {
+      console.log(JSON.stringify(builtMap[courseId], null, 2  ))
+    }
   }
 
   return builtMap;
@@ -69,8 +75,11 @@ async function getData() {
   const courses = await prisma.rawCourse.findMany({
     where: {
       courseNo: {
-        in: [...required, ...approved],
+        startsWith: "2110",
       },
+      academicYear: {
+        gt: "2566",
+      }
     },
     orderBy: [
       {
@@ -90,6 +99,9 @@ async function getData() {
       genEdType: {
         not: GenEdType.NO,
       },
+      academicYear: {
+        gt: "2566"
+      }
     },
     orderBy: [
       {
@@ -147,17 +159,14 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between gap-8 p-4 xl:p-24">
       <h1 className="text-3xl font-bold">CP Analysis 🥗</h1>
 
-      <p className="text-xl">Last Updated = 2566/1 (๒๑ กรกฎาคม ๒๕๖๖)</p>
+      <p className="text-xl">Last Updated = 2567/1 (๒๙ มิถุนายน ๒๕๖๗)</p>
 
       <section className="text-lg">
-        <p>Red Background = วิชาเปิดล่าสุด &le; 2564 (ded course)</p>
-        <p>Orange Background = วิชาเปิดล่าสุด &le; 2565 (ไม่มีข้อมูลปี 2566)</p>
         <p>
-          Yellow Background = ไม่มีข้อมูลของภาคปลาย 2566
-          (มีแค่ภาคต้น/ปีก่อนหน้า)
+          ยึดข้อมูลของปี 66-67
         </p>
         <p>
-          หาย = วิชาอยู่ในรายชื่อวิชาเลือกของหลักสูตร แต่ไม่พบข้อมูล (2564-2566)
+          หาย = วิชาอยู่ในรายชื่อวิชาเลือกของหลักสูตร แต่ไม่พบข้อมูล (2566-2567)
         </p>
 
         <p>
