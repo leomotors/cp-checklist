@@ -58,10 +58,6 @@ function buildMap(courseIds: string[], courses: RawCourse[]) {
       courseNameTh: latest?.courseNameTh,
       abbrName: latest?.abbrName,
     };
-
-    if (courseId == "2110392") {
-      console.log(JSON.stringify(builtMap[courseId], null, 2  ))
-    }
   }
 
   return builtMap;
@@ -91,8 +87,13 @@ async function getData() {
     ],
   });
 
+  const realApprove = unique([
+    ...approved,
+    ...courses.map((course) => course.courseNo).filter(courseNo => courseNo.startsWith("21104") || courseNo.startsWith("21105"))
+  ])
+
   const requiredMap = buildMap(required, courses);
-  const approvedMap = buildMap(approved, courses);
+  const approvedMap = buildMap(realApprove, courses);
 
   const genEds = await prisma.rawCourse.findMany({
     where: {
@@ -166,12 +167,18 @@ export default async function Home() {
           ยึดข้อมูลของปี 66-67
         </p>
         <p>
+          บางวิชาเปิดแต่อาจลงไม่ได้ เช่น SW DEV PRAC II เทอมปลาย ลงได้เฉพาะ CEDT
+        </p>
+        <p>
           หาย = วิชาอยู่ในรายชื่อวิชาเลือกของหลักสูตร แต่ไม่พบข้อมูล (2566-2567)
+        </p>
+        <p>
+          วิชาเลือกในเว็บนี้ = รายชื่อวิชาในหน้าหลักสูตร 61 (ข้อมูลเก่ามาก) + ทุกวิชาที่เป็น 21104xx 21105xx (เพราะหน้าเว็บข้อมูลไม่ครบ) บางตัวเป็นวิชาบังคับอยู่แล้ว บางตัวเฉพาะ ป.โท หรือ CEDT
         </p>
 
         <p>
           Source Code at{" "}
-          <a href="https://github.com/Leomotors/cp-checklist" target="_blank">
+          <a href="https://github.com/leomotors/cp-checklist" target="_blank">
             GitHub
           </a>
         </p>

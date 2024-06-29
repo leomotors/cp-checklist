@@ -17,31 +17,31 @@
     "storybook": "pnpm --filter=\"@cp-checklist/design\" storybook"
   },
   "dependencies": {
-    "@prisma/client": "^5.6.0"
+    "@prisma/client": "^5.16.1"
   },
   "devDependencies": {
     "@leomotors/config": "^0.11.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/eslint": "^8.44.7",
-    "@types/node": "^20.10.0",
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
     "crlf-phobia": "^1.2.0",
     "eslint": "^8.54.0",
-    "eslint-config-next": "^14.0.3",
+    "eslint-config-next": "^14.2.4",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
-    "prettier": "^3.1.0",
-    "prettier-plugin-tailwindcss": "^0.5.7",
-    "prisma": "^5.6.0",
-    "react-bootstrap-icons": "^1.10.3",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "prisma": "^5.16.1",
+    "react-bootstrap-icons": "^1.11.4",
     "turbo": "^1.10.16",
-    "typescript": "^5.3.2"
+    "typescript": "^5.5.2"
   },
   "engines": {
     "node": "^20.9.0",

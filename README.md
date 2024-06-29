@@ -2,14 +2,9 @@
 
 Are you ready to graduate checklist for CP 🥗
 
-## Development
+Note: CP Checklist is no longer in development. Similar functionality will be
+soon introduced in CU Get Reg.
 
-- Git clone and pnpm install
-- Set all .env (see .env.template)
-- Run `pnpm scraper pull` and `pnpm scraper push`
+## Project in this Repo
 
-## TODO
-
-- Better error handling
-- Better UI
-- Landing Page with photo?
+- cp-analysis: List all electives in CP and GenEd with the semester they are available.
